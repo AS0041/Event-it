@@ -20,7 +20,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const MongoDBStore = require('connect-mongo');
 const dbUrl = process.env.DB_ATLAS || 'mongodb://localhost:27017/event';
 
-mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/event', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Database connected")
     })
@@ -52,7 +52,7 @@ const sessionConfig = {
     resave: false,
     saveUninitialized: true,
     cookie: {
-        secure: true,
+
         httpOnly: true,
         expires: Date.now() * 1000 * 3600 * 24 * 7,
         maxAge: 1000 * 3600 * 24 * 7
