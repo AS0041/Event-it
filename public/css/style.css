@@ -89,6 +89,9 @@ body{
   .error{
     word-wrap: break-word;
   }
+  .loginbar{
+    display: none;
+  }
 }
 @media screen and (min-width:630px) {
   #user{
