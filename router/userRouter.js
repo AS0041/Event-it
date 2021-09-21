@@ -36,7 +36,7 @@ router.post("/register", async (req, res, next) => {
         res.redirect("/register");
     }
 });
-router.post("/login", passport.authenticate("local", { failureFlash: true, failureRedirect: "/events" }), (req, res) => {
+router.post("/login", passport.authenticate("local", { failureFlash: true, failureRedirect: "/login" }), (req, res) => {
     req.flash("success", `Welcome, ${req.user.username}`);
     res.redirect("/events");
 });
