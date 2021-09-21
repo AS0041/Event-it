@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventIt</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caramel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body class="d-flex flex-column vh-100"
+    style="background-image: url(https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80);">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <p class="has-text-black"><img src="https://pbs.twimg.com/profile_images/1045671258/e.jpg" alt="EventIt"
+                        class="img-thumbnail mb-1" style="height: 40px;background-color:black;"></p>
+            </a>
+            <% if(currentUser){ %>
+                <a class="nav-link" href="/profile"><i class="fa fa-user-circle-o" id="user"
+                        style="font-size:36px;color: black;" aria-hidden="false"></i>
+                </a>
+                <% }%>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <div class="navbar-nav">
+                            <% if(currentUser){ %>
+                                <a class="nav-link" href="/events"><button class="button"><span>All
+                                            posts</span></button></a>
+                                <a class="nav-link" href="/events/new"><button class="button"><span>Make a
+                                            Post</span></button></a>
+                                <a class="nav-link" href="/events/create"><button
+                                        class="button"><span>Create-Event</span></button></a>
+                                <a class="nav-link" href="/events/view"><button class="button"><span>View
+                                            Events</span></button></a>
+                                <% }%>
+                        </div>
+                        <div class=" navbar-nav ml-auto">
+                            <% if(!currentUser){ %>
+                                <a class="nav-link" href="/login"><button class="button"><span>Login</span></button></a>
+                                <a class="nav-link" href="/register"><button
+                                        class="button"><span>Sign-Up</span></button></a>
+                                <% }else{ %>
+                                    <a class="nav-link" href="/logout"><button
+                                            class="button"><span>Logout</span></button></a>
+                                    <% } %>
+                        </div>
+
+                    </div>
+        </div>
+    </nav>
+    <div class="container-fluid p-0">
+        <%- include("partials/flash") %>
+            <div class="row">
+                <div class="card col-md-6"
+                    style="background-image: url(https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80);">
+                    <div class="card-body">
+                        <h5 class="card-title is-size-1">Abhishek Singh</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente deserunt
+                            illum nam nesciunt sed doloremque facilis magni, odio, ipsa sequi ullam excepturi iusto?
+                            Adipisci quis placeat officiis laudantium numquam porro.
+                            Magni excepturi reprehenderit iste illo recusandae sapiente dicta provident, at facilis
+                            ipsam sit a incidunt, nulla rerum inventore consectetur rem aliquam corporis unde vitae.
+                            Quis ab porro libero doloribus numquam?
+                            Esse maxime est qui explicabo amet, quidem quos enim veritatis, accusantium mollitia dicta,
+                            voluptas placeat voluptatum beatae debitis nemo ipsa facilis alias facere adipisci quaerat
+                            obcaecati necessitatibus. Quam, eos magni?</p>
+                    </div>
+                </div>
+                <div class="card col-md-6"
+                    style="background-image:url(https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80);">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark is-size-1" style="font-family:'Caramel', cursive;;">EventIt
+                        </h5>
+                        <p class="card-text text-dark is-size-3" style="font-family:'Caramel', cursive;;">Lorem
+                            ipsum dolor sit amet consectetur adipisicing elit. Autem sed minus itaque et possimus
+                            molestiae ullam eius a natus dolore! Fugit debitis odio necessitatibus nihil. Provident
+                            laborum amet quas accusamus!
+                            Voluptas, doloribus maxime laboriosam soluta at tenetur nemo fuga quis iusto minus hic
+                            quos dolorem debitis ullam eveniet voluptatem libero eum! In delectus libero rem
+                            temporibus rerum magni numquam debitis.
+                            Blanditiis repellat doloremque quis! Amet officia ex ullam assumenda debitis fugit!
+                            Itaque reiciendis architecto, totam repellendus ab est voluptatibus ad vitae quo hic
+                            sint voluptatum amet temporibus minima accusantium repudiandae!</p>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+    <%- include("partials/footer") %>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <script src="/javascript/javascript.js"></script>
+</body>
+
+</html>

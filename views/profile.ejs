@@ -1,0 +1,30 @@
+<% layout("boilerplate") %>
+    <div class="card shadow">
+        <div class="card" style="background-color: black;">
+            <% if(currentUser.photos){%>
+                <br><br>
+                <img src="<%= currentUser.photos[0].value %> " class="card-img-top img-thumbnail ml-3 mt-2"
+                    style="height: 100px;width: 100px;border-radius: 50%;" alt="user"><br><br>
+                <% } %>
+                    <div class="card-body text-white">
+                        <ul>
+                            <li class="list-group-item" style="background-color: black;">
+                                <h5 class="card-title is-size-3 text-white">Profile</h5>
+                            </li><br><br>
+                            <li class="list-group-item">
+                                <p>Username : <%= currentUser.username||currentUser.displayName %>
+                                </p>
+                            </li><br><br>
+                            <li class="list-group-item"><small>UserID : <%= currentUser._id %>
+                                </small></li><br><br>
+                            <li class="list-group-item">
+                                <p>email: : <%= currentUser.email||currentUser.emails[0].value %>
+                                </p>
+                            </li><br><br>
+                            <li class="list-group-item">
+                                <a href="/events"><button class="btn btn-dark w-100">Back to posts</button></a>
+                            </li><br><br>
+                        </ul>
+                    </div>
+        </div>
+    </div>

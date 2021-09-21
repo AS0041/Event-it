@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light is-primary py-0">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <p class="has-text-black mt-2"><img src="https://pbs.twimg.com/profile_images/1045671258/e.jpg"
+                    alt="EventIt" class="img-thumbnail mb-1"
+                    style="height: 40px;background-color: hsl(171, 100%, 41%);"></p>
+        </a>
+        <% if(currentUser){ %>
+            <a class="nav-link" href="/profile"><i class="fa fa-user-circle-o" id="user"
+                    style="font-size:36px;color: black;" aria-hidden="false"></i>
+            </a>
+            <% }%>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="navbar-nav">
+                        <% if(currentUser){ %>
+                            <a class="nav-link" href="/events"><button class="button"><span>All
+                                        posts</span></button></a>
+                            <a class="nav-link" href="/events/new"><button class="button"><span>Make a
+                                        Post</span></button></a>
+                            <a class="nav-link" href="/events/create"><button
+                                    class="button"><span>Create-Event</span></button></a>
+                            <a class="nav-link" href="/events/view"><button class="button"><span>View
+                                        Events</span></button></a>
+                            <% }%>
+                    </div>
+                    <div class=" navbar-nav ml-auto">
+                        <% if(!currentUser){ %>
+                            <a class="nav-link" href="/login"><button class="button"><span>Login</span></button></a>
+                            <a class="nav-link" href="/register"><button
+                                    class="button"><span>Sign-Up</span></button></a>
+                            <% }else{ %>
+                                <a class="nav-link" href="/logout"><button
+                                        class="button"><span>Logout</span></button></a>
+                                <% } %>
+                    </div>
+
+                </div>
+    </div>
+</nav>
