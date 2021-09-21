@@ -52,6 +52,7 @@ const sessionConfig = {
     resave: false,
     saveUninitialized: true,
     cookie: {
+        secure: true,
         httpOnly: true,
         expires: Date.now() * 1000 * 3600 * 24 * 7,
         maxAge: 1000 * 3600 * 24 * 7
@@ -60,7 +61,7 @@ const sessionConfig = {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:8000/google/callback",
+    callbackURL: "https://eventit41.herokuapp.com/google/callback",
     passReqToCallback: true
 },
     async function (request, accessToken, refreshToken, profile, done) {
