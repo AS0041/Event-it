@@ -19,6 +19,7 @@ const LocalStrategy = require("passport-local");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const MongoDBStore = require('connect-mongo');
 const dbUrl = process.env.DB_ATLAS || 'mongodb://localhost:27017/event';
+const helmet = require("helmet");
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -78,6 +79,7 @@ passport.use(new GoogleStrategy({
 ));
 app.use(session(sessionConfig));
 app.use(flash());
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
