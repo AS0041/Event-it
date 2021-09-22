@@ -43,7 +43,7 @@ body{
     position:fixed;
     border-bottom-left-radius: 60px;
     border-top-left-radius: 60px;
-    backdrop-filter: blur(5.5px);
+    backdrop-filter : blur(5.5px);
     height: 370px;
     width: 70px;
     right: 0;
