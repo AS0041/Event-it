@@ -113,6 +113,9 @@ body{
   .footer{
     margin-top: auto;
   }
+  .comment{
+    position: relative;;left: 30px;
+  }
 }
 .myForm{
   background-color:whitesmoke;
