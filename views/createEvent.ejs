@@ -118,14 +118,11 @@
                             <input class="form-control  bg-warning bg-gradient" name="images" type="file"
                                 id="formFileMultiple" multiple>
                         </div>
-                        <div class="mt-3 ml-2 pb-3" style="border-bottom: solid 2px yellow;">
-                            <label for="floatingInput">Add links(if any)</label>
-                            <svg xmlns="http://www.w3.org/2000/svg" onclick="createElement()" width="16" height="16"
-                                fill="currentColor" class="bi bi-plus-lg ml-5" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
-                            </svg>
-                            <div id="newelementId"></div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control  bg-warning bg-gradient" id="floatingInput"
+                                name="link" style="border-top: none;border-left: none;border-bottom: solid 2px yellow;"
+                                placeholder="name@example.com">
+                            <label for="floatingInput">Add link(if any)</label>
                         </div>
                         <button class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
                                 fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">

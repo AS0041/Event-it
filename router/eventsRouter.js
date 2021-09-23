@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-const { isLoggedIn, asyncError, isAuthor } = require("../middleware");
+const { isLoggedIn, asyncError, isAuthor, validateSchema } = require("../middleware");
 const multer = require("multer");
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
@@ -77,7 +77,7 @@ router.post("/", upload.array("image"), isLoggedIn, asyncError(async (req, res) 
     req.flash("success", "You just made a new post");
     res.redirect(`/events/${posted._id}`);
 }));
-router.post("/create", upload.array("images"), isLoggedIn, asyncError(async (req, res) => {
+router.post("/create", upload.array("images"), isLoggedIn, validateSchema, asyncError(async (req, res) => {
     const event = req.body;
     const createdEvent = new Event(event);
     createdEvent.images = req.files.map(x => ({ url: x.path, filename: x.filename }));
@@ -106,7 +106,7 @@ router.post("/:id/likes", asyncError(async (req, res) => {
         res.redirect(`/events/${id.id}`);
     }
 }))
-router.put("/:id", isLoggedIn, isAuthor, upload.array("image"), asyncError(async (req, res) => {
+router.put("/:id", isLoggedIn, isAuthor, upload.array("image"), validateSchema, asyncError(async (req, res) => {
     const id = req.params;
     const post = await Post.findByIdAndUpdate(id.id, req.body);
     const imgs = req.files.map(x => ({ url: x.path, filename: x.filename }))

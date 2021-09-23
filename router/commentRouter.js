@@ -3,9 +3,9 @@ const router = express.Router({ mergeParams: true });
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 const Reply = require("../models/reply");
-const { isLoggedIn, asyncError } = require("../middleware");
+const { isLoggedIn, asyncError, validateSchema } = require("../middleware");
 
-router.post("/", isLoggedIn, asyncError(async (req, res) => {
+router.post("/", isLoggedIn, validateSchema, asyncError(async (req, res) => {
     const post = await Post.findById(req.params.id);
     const comment = await new Comment(req.body);
     if (!req.user._id) {
@@ -21,7 +21,7 @@ router.post("/", isLoggedIn, asyncError(async (req, res) => {
     req.flash("success", "Successfully made a new comment");
     res.redirect(`/events/${post._id}`);
 }))
-router.post("/:ID/reply", isLoggedIn, asyncError(async (req, res) => {
+router.post("/:ID/reply", isLoggedIn, validateSchema, asyncError(async (req, res) => {
     const post = await Post.findById(req.params.id);
     const comment = await Comment.findById(req.params.ID);
     const reply = await new Reply(req.body);

@@ -1,5 +1,5 @@
 const Post = require("./models/post");
-
+const joiSchema = require("./joiSchema");
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.session.returnTo = req.originalUrl;
@@ -22,3 +22,11 @@ module.exports.isAuthor = async (req, res, next) => {
     }
     next();
 }
+module.exports.validateSchema = (req, res, next) => {
+    const { error } = joiSchema.validateSchema(req.body);
+    if (error) {
+        throw new Error(error.details[0].message);
+    } else {
+        next();
+    }
+};
