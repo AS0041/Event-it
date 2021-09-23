@@ -1,5 +1,5 @@
 const Post = require("./models/post");
-const joiSchema = require("./joiSchema");
+const { joiPost, joiEvent, joiComment, joiReply, joiUser } = require("./joiSchema");
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.session.returnTo = req.originalUrl;
@@ -22,8 +22,40 @@ module.exports.isAuthor = async (req, res, next) => {
     }
     next();
 }
-module.exports.validateSchema = (req, res, next) => {
-    const { error } = joiSchema.validateSchema(req.body);
+module.exports.validatePost = (req, res, next) => {
+    const { error } = joiPost.validate(req.body);
+    if (error) {
+        throw new Error(error.details[0].message);
+    } else {
+        next();
+    }
+};
+module.exports.validateEvent = (req, res, next) => {
+    const { error } = joiEvent.validate(req.body);
+    if (error) {
+        throw new Error(error.details[0].message);
+    } else {
+        next();
+    }
+};
+module.exports.validateComment = (req, res, next) => {
+    const { error } = joiComment.validate(req.body);
+    if (error) {
+        throw new Error(error.details[0].message);
+    } else {
+        next();
+    }
+};
+module.exports.validateReply = (req, res, next) => {
+    const { error } = joiReply.validate(req.body);
+    if (error) {
+        throw new Error(error.details[0].message);
+    } else {
+        next();
+    }
+};
+module.exports.validateUser = (req, res, next) => {
+    const { error } = joiUser.validate(req.body);
     if (error) {
         throw new Error(error.details[0].message);
     } else {
