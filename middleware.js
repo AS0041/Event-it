@@ -26,6 +26,7 @@ module.exports.validatePost = (req, res, next) => {
     const { error } = joiPost.validate(req.body);
     if (error) {
         req.flash("error", error.details[0].message);
+        res.redirect("/register");
     } else {
         next();
     }
@@ -34,6 +35,7 @@ module.exports.validateEvent = (req, res, next) => {
     const { error } = joiEvent.validate(req.body);
     if (error) {
         req.flash("error", error.details[0].message);
+        res.redirect("/register");
     } else {
         next();
     }
@@ -42,6 +44,7 @@ module.exports.validateComment = (req, res, next) => {
     const { error } = joiComment.validate(req.body);
     if (error) {
         req.flash("error", error.details[0].message);
+        res.redirect("/register");
     } else {
         next();
     }
@@ -50,6 +53,7 @@ module.exports.validateReply = (req, res, next) => {
     const { error } = joiReply.validate(req.body);
     if (error) {
         req.flash("error", error.details[0].message);
+        res.redirect("/register");
     } else {
         next();
     }
@@ -58,6 +62,7 @@ module.exports.validateUser = (req, res, next) => {
     const { error } = joiUser.validate(req.body);
     if (error) {
         req.flash("error", error.details[0].message);
+        res.redirect("/register");
     } else {
         next();
     }
