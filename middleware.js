@@ -16,7 +16,7 @@ module.exports.asyncError = function (fn) {
 module.exports.isAuthor = async (req, res, next) => {
     const id = req.params;
     const post = await Post.findById(id.id);
-    if (!post.author.equals(req.user._id) && !req.user._id.equals("61479a514ccc3fdaffb8b2b8")) {
+    if (!post.author.equals(req.user._id) && !req.user._id.equals("614ab14bf236171ab327a660")) {
         req.flash("error", "You do not have permission to do that!");
         return res.redirect(`/campgrounds/${id.id}`);
     }
@@ -25,7 +25,7 @@ module.exports.isAuthor = async (req, res, next) => {
 module.exports.validatePost = (req, res, next) => {
     const { error } = joiPost.validate(req.body);
     if (error) {
-        throw new Error(error.details[0].message);
+        req.flash("error", error.details[0].message);
     } else {
         next();
     }
@@ -33,7 +33,7 @@ module.exports.validatePost = (req, res, next) => {
 module.exports.validateEvent = (req, res, next) => {
     const { error } = joiEvent.validate(req.body);
     if (error) {
-        throw new Error(error.details[0].message);
+        req.flash("error", error.details[0].message);
     } else {
         next();
     }
@@ -41,7 +41,7 @@ module.exports.validateEvent = (req, res, next) => {
 module.exports.validateComment = (req, res, next) => {
     const { error } = joiComment.validate(req.body);
     if (error) {
-        throw new Error(error.details[0].message);
+        req.flash("error", error.details[0].message);
     } else {
         next();
     }
@@ -49,7 +49,7 @@ module.exports.validateComment = (req, res, next) => {
 module.exports.validateReply = (req, res, next) => {
     const { error } = joiReply.validate(req.body);
     if (error) {
-        throw new Error(error.details[0].message);
+        req.flash("error", error.details[0].message);
     } else {
         next();
     }
@@ -57,7 +57,7 @@ module.exports.validateReply = (req, res, next) => {
 module.exports.validateUser = (req, res, next) => {
     const { error } = joiUser.validate(req.body);
     if (error) {
-        throw new Error(error.details[0].message);
+        req.flash("error", error.details[0].message);
     } else {
         next();
     }
