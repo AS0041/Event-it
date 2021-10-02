@@ -31,7 +31,7 @@
                             <small class="list-group-item text-muted mb-0" style="background-color: black;">Date:
                                 <%= post.createdAt %>
                             </small>
-                            <% if(currentUser&&post.author.equals(currentUser._id||"614c5544e9e51bbcb7ad9e90")){%>
+                            <% if(currentUser&&post.author.equals(currentUser._id||"615899eff1afd3284d02d55f")){%>
                                 <button class="dropdown btn px-0 ml-auto" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white"
@@ -151,7 +151,7 @@
                                                     reply
                                                 </p>
                                             </button>
-                                            <% if(currentUser&&comment.author.equals(currentUser._id)||currentUser&&post.author.equals(currentUser._id)||currentUser._id=="614c5544e9e51bbcb7ad9e90"
+                                            <% if(currentUser&&comment.author.equals(currentUser._id)||currentUser&&post.author.equals(currentUser._id)||currentUser._id=="615899eff1afd3284d02d55f"
                                                 ){%>
                                                 <form
                                                     action="/events/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE"
@@ -168,7 +168,7 @@
                                                         <%= reply.author.username||reply.author.displayName%>
                                                     </strong>:
                                                     <%= reply.reply %>.
-                                                        <% if(currentUser&&reply.author.equals(currentUser._id)||currentUser&&post.author.equals(currentUser._id)||currentUser._id=="614c5544e9e51bbcb7ad9e90"
+                                                        <% if(currentUser&&reply.author.equals(currentUser._id)||currentUser&&post.author.equals(currentUser._id)||currentUser._id=="615899eff1afd3284d02d55f"
                                                             ){%>
                                                             <form
                                                                 action="/events/<%= post._id %>/comments/<%= comment._id %>/reply/<%= reply._id%>?_method=DELETE"
