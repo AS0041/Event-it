@@ -39,7 +39,9 @@ router.post("/register", validateUser, async (req, res, next) => {
 });
 router.post("/login", passport.authenticate("local", { failureFlash: true, failureRedirect: "/login" }), (req, res) => {
     req.flash("success", `Welcome, ${req.user.username}`);
-    res.redirect("/events");
+    const redirectUser = req.session.returnTo || "/events";
+    delete req.session.returnTo;
+    res.redirect(redirectUser);
 });
 router.get('/google',
     passport.authenticate('google', {
@@ -60,6 +62,8 @@ router.get('/google/callback',
             req.user._id = ID;
         }
         req.flash("success", `Welcome, ${req.user.displayName}`);
-        res.redirect("/events")
+        const redirectUser = req.session.returnTo || "/events";
+        delete req.session.returnTo;
+        res.redirect(redirectUser);
     });
 module.exports = router;

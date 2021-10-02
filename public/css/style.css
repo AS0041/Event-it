@@ -95,6 +95,11 @@ body{
   .loginbar{
     display: none;
   }
+  .c{
+    position:relative;
+    height:600px;
+    overflow-y:hidden;
+  }
 }
 @media screen and (min-width:630px) {
   #user{
@@ -115,6 +120,13 @@ body{
   }
   .comment{
     position: relative;;left: 30px;
+  }
+  .c{
+    padding: 0px;
+    position:relative;
+    height:600px;
+    overflow:hidden;
+    overflow-y:hidden;
   }
 }
 .myForm{
@@ -140,18 +152,6 @@ body{
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
-::-webkit-scrollbar {
-  width: 10px;
-  background-color:hsl(171, 100%, 41%) ;
-}
-::-webkit-scrollbar-thumb {
-  background: hsl(171, 100%, 41%);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px hsl(171, 100%, 41%);
-  border-radius: 10px;
-}
 .text {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -159,3 +159,47 @@ body{
   -webkit-line-clamp: 5; /* number of lines to show */
   -webkit-box-orient: vertical;
 }
+  .home::-webkit-scrollbar{
+    width: 0px;
+    background-color:black;
+  }
+  .home::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 10px;
+  }
+  .home::-webkit-scrollbar-track {
+    background: black;
+    border-radius: 10px;
+  }
+  .events::-webkit-scrollbar{
+    width: 10px;
+    background-color:purple;
+  }
+  .events::-webkit-scrollbar-thumb {
+    background: purple;
+    border-radius: 10px;
+  }
+  .events::-webkit-scrollbar-track {
+    background: purple;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    background-color:hsl(171, 100%, 41%) ;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(171, 100%, 41%);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px hsl(171, 100%, 41%);
+    border-radius: 10px;
+  }
+  .card-home{
+    position:absolute;
+    top:500px;
+      animation: scroll 60s linear 1s infinite;
+  }
+  @keyframes scroll {
+    100% { top: -700px; }
+  }

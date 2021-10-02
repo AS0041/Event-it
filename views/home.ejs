@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 
-<body class="d-flex flex-column"
+<body class="d-flex flex-column home"
     style="background-image: url(https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80);">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0">
         <div class="container-fluid">
@@ -40,15 +40,20 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <div class="navbar-nav">
                             <% if(currentUser){ %>
-                                <a class="nav-link" href="/events"><button class="button"><span>All
+                                <a class="nav-link" href="/events"><button class="button w-100"><span>All
                                             posts</span></button></a>
-                                <a class="nav-link" href="/events/new"><button class="button"><span>Make a
+                                <a class="nav-link" href="/events/new"><button class="button w-100"><span>Make a
                                             Post</span></button></a>
                                 <a class="nav-link" href="/events/create"><button
-                                        class="button"><span>Create-Event</span></button></a>
-                                <a class="nav-link" href="/events/view"><button class="button"><span>View
+                                        class="button w-100"><span>Create-Event</span></button></a>
+                                <a class="nav-link" href="/events/view"><button class="button w-100"><span>View
                                             Events</span></button></a>
-                                <% }%>
+                                <% if(currentUser._id==="6156780ff3687e5a21a08d66" ||"61479a514ccc3fdaffb8b2b8"){%>
+                                    <a class="nav-link" href="/events/upcoming"><button
+                                            class="button is-danger w-100"><span>Update upcoming
+                                                event</span></button></a>
+                                    <% } %>
+                                        <% }%>
                         </div>
                         <div class=" navbar-nav ml-auto">
                             <% if(!currentUser){ %>
@@ -57,7 +62,7 @@
                                         class="button"><span>Sign-Up</span></button></a>
                                 <% }else{ %>
                                     <a class="nav-link" href="/logout"><button
-                                            class="button"><span>Logout</span></button></a>
+                                            class="button w-100"><span>Logout</span></button></a>
                                     <% } %>
                         </div>
 
@@ -70,37 +75,46 @@
                 <div class="row">
                     <div class="card col-md-6"
                         style="background-image: url(https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80);">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted is-size-1"
-                                style="font-family: 'Caramel', cursive;">Abhishek Singh</h6>
-                            <p class="text-white is-size-4" style="font-family: 'Caramel', cursive;">Lorem ipsum dolor
-                                sit amet
-                                consectetur adipisicing elit. Quam voluptate est consequatur odio vero eius debitis
-                                delectus non alias laboriosam pariatur, excepturi iure velit deserunt, ea
-                                necessitatibus, voluptates natus reiciendis!
-                                At exercitationem molestiae odit officia, reiciendis similique debitis eveniet
-                                repudiandae beatae accusantium et omnis obcaecati aut ex impedit non ullam dolor enim
-                                consequuntur laudantium in aperiam! Inventore perspiciatis vero natus?
-                                Deserunt dolorem odio ducimus odit nemo eum magnam placeat! Commodi inventore nihil
-                                harum dolorum quam minima tenetur dignissimos pariatur illo sed placeat iste natus ut
-                                iusto, similique quo sint provident.</p>
+                        <div class="card-body p-0 pt-2">
+                            <h6 class="card-subtitle mb-2 text-white is-size-1"
+                                style="font-family: 'Caramel', cursive;">
+                                Upcoming events</h6>
+                            <div class="c">
+                                <div class="card-home">
+                                    <%for(let ucevent of ucevents.eventuc){%>
+                                        <li class="text-black is-size-6 col-md-11">
+                                            <%=ucevent %>
+                                        </li>
+                                        <br>
+                                        <br>
+                                        <%}%>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card col-md-6"
                         style="background-image: url(https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80);">
                         <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted is-size-1"
+                            <h6 class="card-subtitle mb-2 text-black is-size-1"
                                 style="font-family: 'Caramel', cursive;">Eventit</h6>
-                            <p class="text-white is-size-3" style="font-family: 'Caramel', cursive;">Lorem ipsum dolor
-                                sit, amet consectetur adipisicing elit. Ut voluptates placeat explicabo, totam
-                                praesentium voluptatem inventore architecto tempore, sunt in corporis velit iste.
-                                Suscipit nostrum reiciendis quisquam, quas molestias corrupti.
-                                Quos ipsa odio hic dicta quis reprehenderit accusantium quas praesentium enim earum
-                                voluptate accusamus sunt quaerat eligendi molestiae, deserunt molestias, odit provident
-                                fuga illum. Culpa deleniti laboriosam vitae saepe sunt.
-                                Ex magni autem ducimus numquam fugit illo similique quasi voluptatum, voluptatem ipsam
-                                reiciendis animi culpa adipisci ipsum nulla officiis suscipit amet ut porro. Explicabo
-                                unde quaerat eaque asperiores voluptatum obcaecati?</p>
+                            <p class="text-white is-size-3" style="font-family: 'Caramel', cursive;">Welcome to Eventit
+                                !
+                                A platform to
+                                create and promote events. A place where one can get to know of all events taking
+                                place
+                                in the
+                                community. We provide features like posting event related informations and
+                                sharing them with other users. Users can create an event room , join an
+                                event created by
+                                others and share their experience and reviews about it in the post section. Promotion ,
+                                planning and performance in one is what we provide. Users can create their
+                                own
+                                account or use their google profile to log in and get going with hosting their own
+                                event.
+                                All user data is fully secure.</p>
+                            <p class="text-black is-size-4">So be
+                                assured and EventIt !!</p>
+
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-const { isLoggedIn, asyncError, isAuthor, validatePost, validateEvent } = require("../middleware");
+const { isLoggedIn, asyncError, isAuthor, validatePost } = require("../middleware");
 const multer = require("multer");
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const Post = require("../models/post");
 const Event = require("../models/event");
+const Ucevent = require("../models/ucevent");
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -33,7 +34,11 @@ router.get("/create", isLoggedIn, asyncError(async (req, res) => {
     res.render("createEvent");
 }));
 router.get("/view", isLoggedIn, asyncError(async (req, res) => {
-    res.render("viewEvents");
+    const events = await Event.find({}).populate("author");
+    res.render("viewEvents", { events });
+}));
+router.get("/upcoming", isLoggedIn, asyncError(async (req, res) => {
+    res.render("upcoming");
 }));
 router.get("/:id", isLoggedIn, asyncError(async (req, res) => {
     const id = req.params;
@@ -77,15 +82,23 @@ router.post("/", upload.array("image"), isLoggedIn, validatePost, asyncError(asy
     req.flash("success", "You just made a new post");
     res.redirect(`/events/${posted._id}`);
 }));
-router.post("/create", upload.array("images"), isLoggedIn, validateEvent, asyncError(async (req, res) => {
+router.post("/create", upload.array("images"), isLoggedIn, asyncError(async (req, res) => {
     const event = req.body;
     const createdEvent = new Event(event);
     createdEvent.images = req.files.map(x => ({ url: x.path, filename: x.filename }));
     createdEvent.author = req.user._id;
     createdEvent.createdAt = Date.now();
     await createdEvent.save();
-    req.flash("success", "You just made a new event");
-    res.redirect(`/events/create/${createdEvent._id}`);
+    req.flash("success", `You created a new event- ${createdEvent.name}`);
+    res.redirect("/events/view");
+}));
+router.post("/upcoming", isLoggedIn, asyncError(async (req, res) => {
+    await Ucevent.deleteMany({});
+    const event = req.body;
+    const ucevent = new Ucevent(event);
+    await ucevent.save();
+    req.flash("sucess", "Good-day, admin! Updated upcoming events.")
+    res.redirect("/");
 }));
 
 router.post("/:id/likes", asyncError(async (req, res) => {
@@ -105,7 +118,7 @@ router.post("/:id/likes", asyncError(async (req, res) => {
         post.save();
         res.redirect(`/events/${id.id}`);
     }
-}))
+}));
 router.put("/:id", isLoggedIn, isAuthor, upload.array("image"), validatePost, asyncError(async (req, res) => {
     const id = req.params;
     const post = await Post.findByIdAndUpdate(id.id, req.body);

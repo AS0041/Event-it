@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Comment = require("./comment");
-const Reply = require("./reply");
 const postSchema = new mongoose.Schema({
     images: [
         {

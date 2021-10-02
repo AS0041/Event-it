@@ -20,19 +20,21 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const MongoDBStore = require('connect-mongo');
 const dbUrl = process.env.DB_ATLAS || 'mongodb://localhost:27017/event';
 const helmet = require("helmet");
+const Ucevent = require("./models/ucevent");
+const { asyncError } = require("./middleware");
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Database connected")
     })
     .catch((e) => {
-        console.log("Error: ", e)
+        console.log("Error: ", e);
     })
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
-app.use(methodOverride("_method"));
 app.set('views', path.join(__dirname, 'views'));
+app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));//serving the static files
 app.use(express.urlencoded({ extended: true }));
 
@@ -98,24 +100,24 @@ app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();
-})
-
-app.get("/", (req, res) => {
-    res.render("home");
-})
+});
+app.get("/", asyncError(async (req, res) => {
+    const ucevents = await Ucevent.findOne({});
+    res.render("home", { ucevents });
+}));
 app.use("/events", event);
-app.use("/", user);
 app.use("/events/:id/comments", comment);
+app.use("/", user);
 app.all("*", (req, res) => {
     throw new Error("Error 404: Page Not Found.");
-})
+});
 
 app.use((err, req, res, next) => {
     if (!err.message) err.message = "Opps! something went wrong."
     res.render("error", { err });
-})
+});
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
     console.log(`Listening to port ${port}`);
-})
+});

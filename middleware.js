@@ -1,5 +1,5 @@
 const Post = require("./models/post");
-const { joiPost, joiEvent, joiComment, joiReply, joiUser } = require("./joiSchema");
+const { joiPost, joiUser } = require("./joiSchema");
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.session.returnTo = req.originalUrl;
@@ -16,9 +16,9 @@ module.exports.asyncError = function (fn) {
 module.exports.isAuthor = async (req, res, next) => {
     const id = req.params;
     const post = await Post.findById(id.id);
-    if (!post.author.equals(req.user._id) && !req.user._id.equals("614ab14bf236171ab327a660")) {
+    if (!post.author.equals(req.user._id) && !req.user._id.equals("6156780ff3687e5a21a08d66" || "61479a514ccc3fdaffb8b2b8")) {
         req.flash("error", "You do not have permission to do that!");
-        return res.redirect(`/campgrounds/${id.id}`);
+        return res.redirect(`/events/${id.id}`);
     }
     next();
 }
@@ -26,34 +26,7 @@ module.exports.validatePost = (req, res, next) => {
     const { error } = joiPost.validate(req.body);
     if (error) {
         req.flash("error", error.details[0].message);
-        res.redirect("/register");
-    } else {
-        next();
-    }
-};
-module.exports.validateEvent = (req, res, next) => {
-    const { error } = joiEvent.validate(req.body);
-    if (error) {
-        req.flash("error", error.details[0].message);
-        res.redirect("/register");
-    } else {
-        next();
-    }
-};
-module.exports.validateComment = (req, res, next) => {
-    const { error } = joiComment.validate(req.body);
-    if (error) {
-        req.flash("error", error.details[0].message);
-        res.redirect("/register");
-    } else {
-        next();
-    }
-};
-module.exports.validateReply = (req, res, next) => {
-    const { error } = joiReply.validate(req.body);
-    if (error) {
-        req.flash("error", error.details[0].message);
-        res.redirect("/register");
+        res.redirect("/events/new");
     } else {
         next();
     }
