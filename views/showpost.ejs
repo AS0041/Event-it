@@ -31,8 +31,7 @@
                             <small class="list-group-item text-muted mb-0" style="background-color: black;">Date:
                                 <%= post.createdAt %>
                             </small>
-                            <%
-                                if(currentUser&&post.author.equals(currentUser._id||"6156780ff3687e5a21a08d66"||"61479a514ccc3fdaffb8b2b8")){%>
+                            <% if(currentUser&&post.author.equals(currentUser._id||"614c5544e9e51bbcb7ad9e90")){%>
                                 <button class="dropdown btn px-0 ml-auto" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white"
@@ -117,7 +116,7 @@
 
                         <!--Comments-->
                         <div class="col-md-7 offset-md-2 mt-5 comment" id="replydiv" style="display: none;">
-                            <!-- <h2 class="is-size-5 mb-2">Comment</h2> -->
+                            <h2 class="is-size-5 mb-2">Comment</h2>
                             <form action="/events/<%=post._id%>/comments" method="POST" class="needs-validation"
                                 novalidate>
                                 <div class="mb-3 d-flex">
@@ -152,8 +151,8 @@
                                                     reply
                                                 </p>
                                             </button>
-                                            <%
-                                                if(currentUser&&comment.author.equals(currentUser._id)||currentUser&&post.author.equals(currentUser._id)){%>
+                                            <% if(currentUser&&comment.author.equals(currentUser._id)||currentUser&&post.author.equals(currentUser._id)||currentUser._id=="614c5544e9e51bbcb7ad9e90"
+                                                ){%>
                                                 <form
                                                     action="/events/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE"
                                                     method="POST" class="d-inline">
@@ -169,8 +168,8 @@
                                                         <%= reply.author.username||reply.author.displayName%>
                                                     </strong>:
                                                     <%= reply.reply %>.
-                                                        <%
-                                                            if(currentUser&&reply.author.equals(currentUser._id)||currentUser&&post.author.equals(currentUser._id)){%>
+                                                        <% if(currentUser&&reply.author.equals(currentUser._id)||currentUser&&post.author.equals(currentUser._id)||currentUser._id=="614c5544e9e51bbcb7ad9e90"
+                                                            ){%>
                                                             <form
                                                                 action="/events/<%= post._id %>/comments/<%= comment._id %>/reply/<%= reply._id%>?_method=DELETE"
                                                                 method="POST" class="d-inline">
