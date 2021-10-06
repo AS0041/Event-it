@@ -86,9 +86,6 @@ body{
   .myForm{
     height: 100%;
   }
-  #profile{
-    display: none;
-  }
   .error{
     word-wrap: break-word;
   }
@@ -102,9 +99,6 @@ body{
   }
 }
 @media screen and (min-width:630px) {
-  #user{
-   display: none;
-  }
   .error{
     word-wrap: break-word;
     margin: 2px;
