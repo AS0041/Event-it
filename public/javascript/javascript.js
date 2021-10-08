@@ -33,19 +33,28 @@ function copyid() {
     copyText.setSelectionRange(0, 99999);//for mobile devices
     navigator.clipboard.writeText(copyText.value);
 }
-
-function createNewElement() {
+function createOneElement() {
     // First create a DIV element.
     var txtNewInputBox = document.createElement('div');
 
     // Then add the content (a new input box) of the element.
-    txtNewInputBox.innerHTML = "<div class='d-flex justify-content-around align-items-center'><div class='form-floating mb-3'><input type='text' name='divisions' class='form-control  bg-warning bg-gradient' id='floatingInput'><label for='floatingInput'>Division name</label></div><div class='form-floating mb-3'><input type='text' name='divisions' class='form-control  bg-warning bg-gradient' id='floatingInput'><label for='floatingInput'>Division head</label></div></div>"
+    txtNewInputBox.innerHTML = "<div class='mb-2 mt-2'><input type='url' class='form-control bg-gradient bg-warning' name='links' id='exampleInputEmail1'></div>"
 
     // Finally put it where it is supposed to appear.
-    document.getElementById("newElementId").appendChild(txtNewInputBox);
+    document.getElementById("newelement").appendChild(txtNewInputBox);
 }
-function createElement() {
-    var txtNewInput = document.createElement('div');
-    txtNewInput.innerHTML = "<div class='d-flex justify-content-around align-items-center'><div class='form-floating mb-3'><input type='text' name='links' class='form-control  bg-warning bg-gradient' id='floatingInputt'><label for='floatingInputt'>Link :</label></div></div>"
-    document.getElementById("newelementId").appendChild(txtNewInput);
-}
+var x = setInterval(function () {
+    var value = new Date(document.getElementById("value").value).getTime();
+    var presentTime = new Date().getTime();
+    var distance = value - presentTime;
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("demo").innerText = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "<h3 class='is-size-2 live'>Event is Live Now!</h3>";
+    }
+}, 1000);

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Member = require("./member");
 const eventSchema = new mongoose.Schema({
     images: [
         {
@@ -6,32 +7,54 @@ const eventSchema = new mongoose.Schema({
             filename: String
         }
     ],
-    date: {
+    time: {
         type: Date
     },
     name: String,
-    userids: {
-        type: Array
-    },
     createdAt: {
         type: Date
     },
     description: String,
-    likes: {
-        type: Number,
-        default: 0
-    },
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    divisions: [
+    links: {
+        type: Array
+    },
+    members: [
         {
-            type: String
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Member"
         }
     ],
-    link: String
+    allowedMembers: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Member"
+        }
+    ],
+    userclick: {
+        type: Array
+    },
 })
-
+eventSchema.post("findOneAndDelete", async (doc) => {
+    if (doc) {
+        await Member.deleteMany({
+            _id: {
+                $in: doc.members
+            }
+        })
+    }
+})
+eventSchema.post("findOneAndDelete", async (doc) => {
+    if (doc) {
+        await Member.deleteMany({
+            _id: {
+                $in: doc.allowedMembers
+            }
+        })
+    }
+})
 const Event = mongoose.model("Event", eventSchema);
 module.exports = Event;

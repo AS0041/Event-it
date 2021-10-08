@@ -1,2 +1,397 @@
-<% layout("boilerplate") %>
-    <h1 class="is-size-1 bg-dark text-white container mt-5">under construction........</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventIt</title>
+    <link <link
+        href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA7fUFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREAABEREREREQAAEREAAAERAAAREQEREREAABERAREREQAAEREAARERAAAREQABEREAABERAREREQAAEREBERERAAAREQAAAREAABEREREREQAAERERERERAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caramel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body class="d-flex flex-column event1">
+    <nav class="navbar navbar-expand-lg navbar-light is-danger py-0">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <p class="has-text-black"><img src="https://pbs.twimg.com/profile_images/1045671258/e.jpg" alt="EventIt"
+                        class="img-thumbnail mb-1" style="height: 40px;background-color:  hsl(348, 100%, 61%);"></p>
+            </a>
+            <!-- Button trigger modal -->
+            <% if(currentUser){%>
+                <i data-bs-toggle="modal" data-bs-target="#exampleModal1" class="fa fa-user-circle-o" id="profile"
+                    style="font-size: 36px;color: black;"></i>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="mr-5 mt-5">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body p-0">
+                                    <div>
+                                        <div class="ml-5">
+                                            <% if(currentUser.photos){%>
+                                                <img src="<%= currentUser.photos[0].value %> "
+                                                    style="border-radius: 50%;height:200px;width: 200px;"
+                                                    class="card-img-top" alt="...">
+                                                <% } %>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <b>Username:</b>
+                                                <%= currentUser.username||currentUser.displayName %>
+                                            </li>
+                                            <li class="list-group-item d-flex align-items-center">
+                                                <label for="form-label"><b>UserID:</b></label>
+                                                <input type="text" class="form-control" id="myInput"
+                                                    style="border: none;" value="<%= currentUser._id %> " required>
+                                                <button class="btn" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Copy to Clipboard" onclick="copyid()"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                                                        <path
+                                                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                                                    </svg></button>
+                                            </li>
+                                            <li class="list-group-item"><b>email:</b>
+                                                <%= currentUser.email||currentUser.emails[0].value %>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <div class="navbar-nav">
+                            <% if(currentUser){ %>
+                                <a class="nav-link" href="/events"><button class="button"><span>All
+                                            posts</span></button></a>
+                                <a class="nav-link" href="/events/new"><button class="button"><span>Make a
+                                            Post</span></button></a>
+                                <a class="nav-link" href="/events/create"><button
+                                        class="button"><span>Create-Event</span></button></a>
+                                <a class="nav-link" href="/events/view"><button class="button"><span>View
+                                            Events</span></button></a>
+                                <% }%>
+                        </div>
+                        <div class=" navbar-nav ml-auto">
+                            <% if(!currentUser){ %>
+                                <a class="nav-link" href="/login"><button class="button"><span>Login</span></button></a>
+                                <a class="nav-link" href="/register"><button
+                                        class="button"><span>Sign-Up</span></button></a>
+                                <% }else{ %>
+                                    <a class="nav-link" href="/logout"><button
+                                            class="button"><span>Logout</span></button></a>
+                                    <% } %>
+                        </div>
+
+                    </div>
+        </div>
+    </nav>
+    <div class="container-fluid p-0">
+        <%- include("partials/flash") %>
+            <div class="d-flex justify-content-center">
+                <input id="value" type="text" value="<%= event.time %>" class="d-none">
+                <div class="is-size-2 d-none d-xl-block" style="position: absolute;left: 120px;" id="demo"></div>
+                <h3 class="text-black p-0" style="font-family:'Caramel',cursive;font-size: 80px;height:75px;">
+                    <%= event.name %>
+                </h3>
+            </div>
+            <% if(event.author._id.equals(currentUser._id)) {%>
+                <div class="dropdown position-absolute" style="right: 0;top: 90px;">
+                    <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black"
+                            class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                            <path
+                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                        </svg>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><button type="button" class="btn w-100" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">Edit
+                            </button></li>
+                        <form action="/events/create/<%=event._id%>?_method=DELETE" class=" d-inline" method="POST">
+                            <button class="btn w-100">Delete</button>
+                        </form>
+                        <li><button id="close" class="btn w-100">Close Event</button></li>
+                    </ul>
+                </div>
+                <% } %>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4" style="background-image: url()">
+                                <h3 class="is-size-1 text-black" style="font-family: 'Caramel', cursive;">About the
+                                    event
+                                </h3>
+                                <div class="d-flex flex-column">
+                                    <div class="h-100">
+                                        <p class="mb-5">
+                                            <%= event.description %>
+                                        </p>
+                                    </div>
+                                    <div class="mt-auto mb-3">
+                                        For more info, follow :
+                                        <h3 class="is-size-6">
+                                            <% for(let link of event.links){%>
+                                                <a href=" <%= link %>">
+                                                    <%= link %>
+                                                </a>
+                                                <% } %>
+                                        </h3>
+                                    </div>
+                                    <div>
+                                        <h3 class="is-size-6">
+                                            Event head-coordinator : <%= event.author.username %>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-5">
+                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <% if(event.images){%>
+                                            <div id="carouselExampleControls" class="carousel slide"
+                                                data-bs-ride="carousel">
+                                                <div class="carousel-inner">
+                                                    <% event.images.forEach((img,i)=> {%>
+                                                        <div class="carousel-item<%= i==0?" active":""%> ">
+                                                            <img src="<%=img.url%> " class="d-block w-100;"
+                                                                style="height: 300px;width: 500px;" alt="...">
+                                                        </div>
+                                                        <% }) %>
+                                                </div>
+                                                <% if(event.images.lenght){ %>
+                                                    <button class="carousel-control-prev" type="button"
+                                                        data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                        <span class="carousel-control-prev-icon"
+                                                            aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Previous</span>
+                                                    </button>
+                                                    <button class="carousel-control-next" type="button"
+                                                        data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                                        <span class="carousel-control-next-icon"
+                                                            aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Next</span>
+                                                    </button>
+                                                    <% } %>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h3 class="is-size-1 text-black" style="font-family: 'Caramel';">Join The Event</h3>
+                                <% if(event.userclick.find(x=>x==currentUser.username)){%>
+                                    <a href="/events/create/<%=event._id%>/Member"><button class="button is-success"
+                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="You have already requested" disabled>Join as
+                                            a
+                                            Member</button></a>
+                                    <% }else {%>
+                                        <a href="/events/create/<%=event._id%>/Member"><button id="memberBtn"
+                                                class="button is-success mb-3">Join as
+                                                a
+                                                Member</button></a>
+                                        <% } %>
+                                            <a href="/events/create/<%=event._id%>/Member"><button
+                                                    class="button is-success" style="width: 158px;">Event
+                                                    List</button></a>
+                                            <% if(event.author._id.equals(currentUser._id)){ %>
+                                                <div class="mt-3">
+                                                    <% for(let member of event.members) {%>
+                                                        <ol class="d=flex justify-content-between mb-3">
+                                                            <div>
+                                                                <b>
+                                                                    <%= member.name %>
+                                                                </b>wants permission to join the event as a member:
+                                                                <p>
+                                                                    College-name : <%= member.college %>
+                                                                </p>
+                                                                <p>
+                                                                    Email-id : <%= member.email %>
+                                                                </p>
+                                                                <p>
+                                                                    Linkedin Id : <%= member.linkedin %>
+                                                                </p>
+                                                                <div>
+                                                                    <div>
+                                                                        <form
+                                                                            action="/events/create/<%=event._id%>/<%=member._id%>"
+                                                                            method="POST" class="d-inline">
+                                                                            <button type="submit"
+                                                                                class="btn btn-success">Accept</button></a>
+                                                                        </form>
+                                                                        <form
+                                                                            action="/events/create/<%=event._id%>/<%=member._id%>?_method=DELETE"
+                                                                            method="POST" class="d-inline"><button
+                                                                                type="submit"
+                                                                                class="btn btn-danger">Decline</button>
+                                                                        </form>
+                                                                    </div>
+                                                        </ol>
+                                                        <% } %>
+                                                </div>
+                                                <% } %>
+                                                    <div>
+                                                        <h3 class="is-size-4 mt-5 mb-5">Members</h3>
+                                                        <% for(let member of event.allowedMembers) {%>
+                                                            <div class="d-flex">
+                                                                <li>
+                                                                    <%= member.name%>
+                                                                </li>
+                                                                <div class="ml-auto d-flex align-items-baseline">
+                                                                    <% if(event.author._id.equals(currentUser._id)) {%>
+                                                                        <button type="button" data-bs-toggle="modal"
+                                                                            data-bs-target="#member"
+                                                                            class="button is-small is-link mr-3">Details</button>
+                                                                        <!--Modal Body-->
+                                                                        <div class="modal fade" id="member"
+                                                                            tabindex="-1" aria-labelledby="memberLabel"
+                                                                            aria-hidden="true">
+                                                                            <div class="modal-dialog">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title is-size-5"
+                                                                                            id="memberLabel">
+                                                                                            <b>Member
+                                                                                                details</b>
+                                                                                        </h5>
+                                                                                        <button type="button"
+                                                                                            class="btn-close"
+                                                                                            data-bs-dismiss="modal"
+                                                                                            aria-label="Close"></button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <p>College name : <%=
+                                                                                                member.college %>
+                                                                                        </p>
+                                                                                        <hr class="bg-dark">
+                                                                                        <p>Email Id : <%= member.email
+                                                                                                %>
+                                                                                        </p>
+                                                                                        <hr class="bg-dark">
+                                                                                        <p>Linkedin Id : <%=
+                                                                                                member.linkedin %>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form
+                                                                            action="/events/create/<%=event._id%>/<%=member._id%>/allowed?_method=DELETE"
+                                                                            method="POST"> <button
+                                                                                class="btn btn-sm btn-danger mb-1">Remove</button>
+                                                                        </form>
+                                                                        <% } %>
+                                                                </div>
+                                                                <% } %>
+                                                            </div>
+                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+    </div>
+    <%- include("partials/footer") %>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content ml-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit event</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="d-inline needs-validation" action="/events/create/<%=event._id%>?_method=PUT"
+                            enctype="multipart/form-data" method="POST" novalidate>
+                            <label class="form-label" for="name">Name: </label>
+                            <input class="form-control mb-1" type="text" name="name" id="name" value="<%= event.name %>"
+                                required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <% if(event.links[0]) {%>
+                                <div class="mt-2">
+                                    <label class="form-label" for="links">Link(s): </label>
+                                    <% for(let link of event.links) {%>
+                                        <input class="form-control mb-1" type="url" name="links" id="links"
+                                            value="<%= link %>">
+                                        <% } %>
+                                </div>
+                                <% } %>
+                                    <div class=" mb-1">
+                                        <label for="image">Image</label>
+                                        <input type="file" name="image" class="mb-3 mt-3" id="image" multiple>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3 mt-2">
+                                        <label for="exampleFormControlTextarea1">Description:</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                                            name="description" required><%= event.description %> </textarea>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                    <% if(event.images[0]) {%>
+                                        <div class="mb-3">
+                                            <h6>Select to delete:</h5>
+                                                <% event.images.forEach((img,i)=> {%>
+                                                    <img src="<%=img.url%>" class="img-thumbnail"
+                                                        style="height: 100px;width: 100px;" alt="">
+                                                    <div class="form-check-inline">
+                                                        <input type="checkbox" id="image-<%= i%> " name="deleteImages[]"
+                                                            value="<%=img.filename%>">
+                                                    </div>
+                                                    <% }) %>
+                                        </div>
+                                        <% } %>
+                                            <button class="btn btn-warning mb-3">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <script src="/javascript/javascript.js"></script>
+</body>
+
+</html>

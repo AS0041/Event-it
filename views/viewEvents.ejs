@@ -114,24 +114,26 @@
     </nav>
     <div class="container-fluid p-0">
         <%- include("partials/flash") %>
-            <div class="container mt-5">
+            <div class="offset-md-2 mt-3">
                 <div class="row">
                     <% for(let event of events){%>
-                        <div class="card m-3 d-flex" style="width: 18rem;background-color: purple;">
+                        <div class="card m-3" style="width: 18rem;background-color: purple;">
                             <% if(event.images[0]){%>
-                                <img src="<%= event.images[0].url %> " class="img-thumbnail mt-3" alt="...">
+                                <img src="<%= event.images[0].url %> " class="img-thumbnail mt-3" style="height: 170px;"
+                                    alt="...">
                                 <% }else{ %>
-                                    <img src="https://i.stack.imgur.com/y9DpT.jpg" class="img-thumbnail mt-3" alt="...">
+                                    <img src="https://i.stack.imgur.com/y9DpT.jpg" class="img-thumbnail mt-3"
+                                        style="height: 170px;" alt="...">
                                     <% } %>
                                         <div class="card-body">
                                             <h5 class="card-title text-white">
                                                 <%= event.name %>
                                             </h5>
-                                            <p class="card-text text-black">
+                                            <p class="card-text text-black eventtext">
                                                 <%= event.description %>
                                             </p>
-                                            <a href="/events/create/<%= event._id %> "
-                                                class="btn btn-secondary">Enter</a>
+                                            <a href="/events/create/<%=event._id%>" class="btn btn-secondary">Enter</a>
+
                                         </div>
                         </div>
                         <% } %>

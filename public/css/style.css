@@ -153,6 +153,13 @@ body{
   -webkit-line-clamp: 5; /* number of lines to show */
   -webkit-box-orient: vertical;
 }
+.eventtext {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
   .home::-webkit-scrollbar{
     width: 0px;
     background-color:black;
@@ -177,6 +184,18 @@ body{
     background: purple;
     border-radius: 10px;
   }
+  .event1::-webkit-scrollbar {
+    width: 10px;
+    background-color: hsl(348, 100%, 61%) ;
+  }
+  .event1::-webkit-scrollbar-thumb {
+    background:  hsl(348, 100%, 61%);
+    border-radius: 10px;
+  }
+  .event1::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px  hsl(348, 100%, 61%);
+    border-radius: 10px;
+  }
   ::-webkit-scrollbar {
     width: 10px;
     background-color:hsl(171, 100%, 41%) ;
@@ -197,3 +216,21 @@ body{
   @keyframes scroll {
     100% { top: -700px; }
   }
+  .live{
+   color: green;
+   transform: scaleY(1.1);
+   animation-name: example;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  }
+  
+@keyframes example {
+  0%   {color:red;}
+  25%  {color:rgb(0, 255, 128);}
+  50%  {color:blue;}
+  75%  {color:green;}
+  100% {color:red;}
+}
+.close{
+  color: red;
+}

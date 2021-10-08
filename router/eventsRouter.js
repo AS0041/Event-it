@@ -7,6 +7,7 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const Post = require("../models/post");
 const Event = require("../models/event");
 const Ucevent = require("../models/ucevent");
+const Member = require("../models/member");
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -40,6 +41,15 @@ router.get("/view", isLoggedIn, asyncError(async (req, res) => {
 router.get("/upcoming", isLoggedIn, asyncError(async (req, res) => {
     res.render("upcoming");
 }));
+router.get("/create/:id/Member", isLoggedIn, asyncError(async (req, res) => {
+    const event = await Event.findById(req.params.id);
+    res.render("Member", { event });
+}));
+router.get("/create/:id", isLoggedIn, asyncError(async (req, res) => {
+    const event = await Event.findById(req.params.id).populate("members").populate("allowedMembers").populate("author");
+    const members = await Member.find({});
+    res.render("viewEvent", { event, members });
+}));
 router.get("/:id", isLoggedIn, asyncError(async (req, res) => {
     const id = req.params;
     const post = await Post.findById(id.id).populate(
@@ -64,11 +74,6 @@ router.get("/:id", isLoggedIn, asyncError(async (req, res) => {
         return res.redirect("/events");
     }
     res.render("showpost", { post });
-}));
-router.get("/create/:id", isLoggedIn, asyncError(async (req, res) => {
-    const id = req.params;
-    const event = await Event.findById(id.id);
-    res.render("viewEvent", { event });
 }));
 
 
@@ -100,7 +105,28 @@ router.post("/upcoming", isLoggedIn, asyncError(async (req, res) => {
     req.flash("sucess", "Good-day, admin! Updated upcoming events.")
     res.redirect("/");
 }));
-
+router.post("/create/:id/Member", asyncError(async (req, res) => {
+    const id = req.params;
+    const event = await Event.findById(id.id);
+    const member = new Member(req.body);
+    member.name = req.user.username || req.user.displayName;
+    await event.members.push(member);
+    await event.userclick.push(member.name);
+    await member.save();
+    await event.save();
+    req.flash("success", `Request send to join the event- ${event.name}. You will see your name in the members list shortly if you are selected. We will also send you confirmation via your email.`);
+    res.redirect(`/events/create/${id.id}`);
+}));
+router.post("/create/:id/:memberid", asyncError(async (req, res) => {
+    const id = req.params;
+    const event = await Event.findById(id.id);
+    const member = await Member.findById(id.memberid);
+    await Event.findByIdAndUpdate(id.id, { $pull: { members: id.memberid } });
+    event.allowedMembers.push(member);
+    await event.save();
+    req.flash("success", `Accepted ${member.name} as a Member`);
+    res.redirect(`/events/create/${id.id}`);
+}));
 router.post("/:id/likes", asyncError(async (req, res) => {
     const id = req.params;
     const userID = req.user._id;
@@ -134,11 +160,58 @@ router.put("/:id", isLoggedIn, isAuthor, upload.array("image"), validatePost, as
     req.flash("success", "Successfully edited the post");
     res.redirect(`/events/${post._id}`);
 }))
+router.put("/create/:id", isLoggedIn, upload.array("image"), asyncError(async (req, res) => {
+    const id = req.params;
+    const event = await Event.findByIdAndUpdate(id.id, req.body);
+    const imgs = req.files.map(x => ({ url: x.path, filename: x.filename }));
+    event.images.push(...imgs);
+    await event.save();
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await event.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } });
+    }
+    req.flash("success", "Successfully edited the event");
+    res.redirect(`/events/create/${event._id}`);
+}))
+router.delete("/create/:id/:memberid/allowed", isLoggedIn, asyncError(async (req, res) => {
+    const id = req.params;
+    const event = await Event.findById(id.id);
+    const member = await Member.findById(id.memberid);
+    await Event.findByIdAndUpdate(id.id, { $pull: { allowedMembers: id.memberid } });
+    await Member.findByIdAndDelete(id.memberid);
+    const userclicked = event.userclick.find(x => x === member.name);
+    const newUserclick = await event.userclick.filter(x => x !== userclicked);
+    event.userclick = newUserclick;
+    event.save();
+    req.flash("success", `Removed ${member.name} from Member`);
+    res.redirect(`/events/create/${id.id}`);
+}));
+router.delete("/create/:id/:memberid", isLoggedIn, asyncError(async (req, res) => {
+    const id = req.params;
+    const event = await Event.findById(id.id);
+    const member = await Member.findById(id.memberid);
+    await Event.findByIdAndUpdate(id.id, { $pull: { members: id.memberid } });
+    await Member.findByIdAndDelete(id.memberid);
+    const userclicked = event.userclick.find(x => x === member.name);
+    const newUserclick = await event.userclick.filter(x => x !== userclicked);
+    event.userclick = newUserclick;
+    event.save();
+    req.flash("success", "Member declined permission");
+    res.redirect(`/events/create/${id.id}`);
+}));
+router.delete("/create/:id", isLoggedIn, asyncError(async (req, res) => {
+    const id = req.params;
+    await Event.findByIdAndDelete(id.id);
+    req.flash("success", "Successfully deleted the event");
+    res.redirect("/events/view");
+}));
 router.delete("/:id", isLoggedIn, isAuthor, asyncError(async (req, res) => {
     const id = req.params;
     await Post.findByIdAndDelete(id.id);
     req.flash("success", "Successfully deleted the post");
     res.redirect("/events");
-}))
+}));
 
 module.exports = router;
