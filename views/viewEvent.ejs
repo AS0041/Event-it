@@ -114,11 +114,14 @@
     <div class="container-fluid p-0">
         <%- include("partials/flash") %>
             <div class="d-flex justify-content-center">
-                <input id="value" type="text" value="<%= event.time %>" class="d-none">
-                <div class="is-size-2 d-none d-xl-block" style="position: absolute;left: 120px;" id="demo"></div>
-                <h3 class="text-black p-0" style="font-family:'Caramel',cursive;font-size: 80px;height:75px;">
-                    <%= event.name %>
-                </h3>
+                <% if(event.time) {%>
+                    <input id="value" type="text" value="<%= event.time %>" class="d-none">
+                    <% } %>
+                        <div class="is-size-2 d-none d-xl-block" style="position: absolute;left: 120px;" id="demo">
+                        </div>
+                        <h3 class="text-black p-0" style="font-family:'Caramel',cursive;font-size: 80px;height:75px;">
+                            <%= event.name %>
+                        </h3>
             </div>
             <% if(event.author._id.equals(currentUser._id)) {%>
                 <div class="dropdown position-absolute" style="right: 0;top: 90px;">
