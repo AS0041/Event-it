@@ -141,7 +141,7 @@ router.post("/create/:id/:memberid", asyncError(async (req, res) => {
                 user: "eventit41@gmail.com",
                 clientId: process.env.CLIENT_ID,
                 clientSecret: process.env.CLIENT_SECRET,
-                refreshToken: "1//04WPTcPl4Tt5sCgYIARAAGAQSNwF-L9IriXOR-rF7PR_GogBW3TvKc9qecw4ahmHSe_IEZB3kEC2wEoaUa0s2RGl87Z9vp83-KBE",//process.env.REFRESH_TOKEN,
+                refreshToken: process.env.REFRESH_TOKEN,
                 accessToken: accessToken
             }
         });
@@ -156,11 +156,11 @@ router.post("/create/:id/:memberid", asyncError(async (req, res) => {
         return result
     };
     sendMail(req, res)
-        .then((result) => {
+        .then(() => {
             req.flash("success", `Accepted ${member.name} as a Member.Email sent to ${member.email}.Please visit your email to check the sent mail.`);
             res.redirect(`/events/create/${id.id}`);
         })
-        .catch((error) => {
+        .catch(() => {
             req.flash("error", `Error! Could not send email to ${member.name}`);
             res.redirect(`/events/create/${id.id}`);
         });
