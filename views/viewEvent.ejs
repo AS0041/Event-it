@@ -405,12 +405,12 @@
                 var value = new Date(document.getElementById("value").value).getTime();
                 var timeValue = new Date(document.getElementById("timeValue").value).getTime();
                 var presentTime = new Date().getTime();
-                var distance = value - presentTime;
+                var distance = value - presentTime + 19800000;
                 var difference = timeValue - presentTime;
                 var timeout = timeValue - value;
                 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) - 5;
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) - 29;
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) - 30;
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 document.getElementById("demo").innerText = days + "d " + hours + "h "
                     + minutes + "m " + seconds + "s ";
