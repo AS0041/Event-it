@@ -209,9 +209,9 @@
                             <div class="col-md-4">
                                 <h3 class="is-size-1 text-black" style="font-family: 'Caramel';">Join The Event</h3>
                                 <% if(event.userclick.find(x=>x==currentUser.username)){%>
-                                    <a href="/events/create/<%=event._id%>/Member"><button class="button is-success"
-                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                            title="You have already applied" disabled>Join as
+                                    <a href="/events/create/<%=event._id%>/Member"><button
+                                            class="button is-success mb-3" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" title="You have already applied" disabled>Join as
                                             a
                                             Member</button></a>
                                     <% }else {%>
