@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
+
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const { isLoggedIn, asyncError, isAuthor, validatePost } = require("../middleware");
@@ -8,6 +12,8 @@ const Post = require("../models/post");
 const Event = require("../models/event");
 const Ucevent = require("../models/ucevent");
 const Member = require("../models/member");
+const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -114,7 +120,7 @@ router.post("/create/:id/Member", asyncError(async (req, res) => {
     await event.userclick.push(member.name);
     await member.save();
     await event.save();
-    req.flash("success", `Request send to join the event- ${event.name}. You will see your name in the members list shortly if you are selected. We will also send you confirmation via your email.`);
+    req.flash("success", `Request send to join the event- ${event.name}. We will send you confirmation via your email.`);
     res.redirect(`/events/create/${id.id}`);
 }));
 router.post("/create/:id/:memberid", asyncError(async (req, res) => {
@@ -124,8 +130,40 @@ router.post("/create/:id/:memberid", asyncError(async (req, res) => {
     await Event.findByIdAndUpdate(id.id, { $pull: { members: id.memberid } });
     event.allowedMembers.push(member);
     await event.save();
-    req.flash("success", `Accepted ${member.name} as a Member`);
-    res.redirect(`/events/create/${id.id}`);
+    const oAuth2Client = new google.auth.OAuth2(process.env.CLIENT_ID, process.env.CLIENT_SECRET, "https://developers.google.com/oauthplayground");
+    oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
+    async function sendMail(req, res) {
+        const accessToken = await oAuth2Client.getAccessToken();
+        const transport = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                type: "OAuth2",
+                user: "eventit41@gmail.com",
+                clientId: process.env.CLIENT_ID,
+                clientSecret: process.env.CLIENT_SECRET,
+                refreshToken: process.env.REFRESH_TOKEN,
+                accessToken: accessToken
+            }
+        });
+        const mailOptions = {
+            from: '"EventIt 📧"<eventit41@gmail.com>',
+            to: `${member.email}`,
+            subject: `Congratulations! You are selected as a member for the event- ${event.name}`,
+            text: `Congratulations! You are selected as a member for the event- ${event.name}`,
+            html: `<p>Congratulations! You are selected as a member for the event- ${event.name}.<br><br><p>Regards</p>Abhishek Singh-EventIt.</p>`
+        };
+        const result = await transport.sendMail(mailOptions)
+        return result
+    };
+    sendMail(req, res)
+        .then((result) => {
+            req.flash("success", `Accepted ${member.name} as a Member.Email sent to ${member.email}.`);
+            res.redirect(`/events/create/${id.id}`);
+        })
+        .catch((error) => {
+            req.flash("error", `Error! Could not send mail to the user.`);
+            res.redirect(`/events/create/${id.id}`);
+        });
 }));
 router.post("/:id/likes", asyncError(async (req, res) => {
     const id = req.params;

@@ -36,25 +36,19 @@
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content m-0">
                             <div class="modal-header">
-                                <b class="modal-title is-size-3" id="exampleModalLabel">User : <%=
-                                        currentUser.username||currentUser.displayName %>
-                                </b>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <div class="card d-flex">
-                                    <div>
+                            <div class="modal-body p-0">
+                                <div>
+                                    <div class="ml-5">
                                         <% if(currentUser.photos){%>
                                             <img src="<%= currentUser.photos[0].value %> "
                                                 style="border-radius: 50%;height:200px;width: 200px;"
                                                 class="card-img-top" alt="...">
                                             <% } %>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title is-size-4">Profile</h5>
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">

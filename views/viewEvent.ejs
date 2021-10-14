@@ -114,8 +114,9 @@
     <div class="container-fluid p-0">
         <%- include("partials/flash") %>
             <div class="d-flex justify-content-center">
-                <% if(event.time) {%>
+                <% if(event.time&&event.timed) {%>
                     <input id="value" type="text" value="<%= event.time %>" class="d-none">
+                    <input id="timeValue" type="text" value="<%= event.timed %>" class="d-none">
                     <% } %>
                         <div class="is-size-2 d-none d-xl-block" style="position: absolute;left: 120px;" id="demo">
                         </div>
@@ -145,7 +146,7 @@
                 <% } %>
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4" style="background-image: url()">
+                            <div class="col-md-4 pr-0" style="background-image: url()">
                                 <h3 class="is-size-1 text-black" style="font-family: 'Caramel', cursive;">About the
                                     event
                                 </h3>
@@ -172,7 +173,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 mt-5">
+                            <div class="col-md-4 mt-5 pl-0">
                                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner">
                                         <% if(event.images){%>
@@ -186,7 +187,7 @@
                                                         </div>
                                                         <% }) %>
                                                 </div>
-                                                <% if(event.images.lenght){ %>
+                                                <% if(event.images.length>1){ %>
                                                     <button class="carousel-control-prev" type="button"
                                                         data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                                                         <span class="carousel-control-prev-icon"
@@ -203,16 +204,6 @@
                                             </div>
                                             <% } %>
                                     </div>
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -220,7 +211,7 @@
                                 <% if(event.userclick.find(x=>x==currentUser.username)){%>
                                     <a href="/events/create/<%=event._id%>/Member"><button class="button is-success"
                                             data-bs-toggle="tooltip" data-bs-placement="top"
-                                            title="You have already requested" disabled>Join as
+                                            title="You have already applied" disabled>Join as
                                             a
                                             Member</button></a>
                                     <% }else {%>
@@ -353,6 +344,22 @@
                                         <% } %>
                                 </div>
                                 <% } %>
+                                    <div class=" mb-1 mt-3">
+                                        <label for="image">Event begins on:</label>
+                                        <input type="datetime-local" class="form-control mt-2" id="floatingPassword"
+                                            name="time" value="<%= event.time %> " required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                    <div class=" mb-1 mt-3">
+                                        <label for="image">Event ends on:</label>
+                                        <input type="datetime-local" class="form-control mt-2" id="floatingPassword"
+                                            name="timed" value="<%= event.timed %> " required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
                                     <div class=" mb-1">
                                         <label for="image">Image</label>
                                         <input type="file" name="image" class="mb-3 mt-3" id="image" multiple>
@@ -396,17 +403,27 @@
         <script>
             var x = setInterval(function () {
                 var value = new Date(document.getElementById("value").value).getTime();
+                var timeValue = new Date(document.getElementById("timeValue").value).getTime();
                 var presentTime = new Date().getTime();
                 var distance = value - presentTime;
+                var difference = timeValue - presentTime;
+                var timeout = timeValue - value;
                 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 document.getElementById("demo").innerText = days + "d " + hours + "h "
                     + minutes + "m " + seconds + "s ";
-                if (distance < 0) {
+                if (distance < 0 && difference > 0) {
                     clearInterval(x);
                     document.getElementById("demo").innerHTML = "<h3 class='is-size-2 live'>Event is Live Now!</h3>";
+                    var y = setTimeout(function () {
+                        window.location.reload();
+                        clearTimeout(y);
+                    }, timeout);
+                } else if (distance < 0 && difference < 0) {
+                    document.getElementById("demo").innerHTML = "<h3 class='is-size-2 text-danger'>Event is Closed.</h3>";
+                    document.getElementById("memberBtn").disabled = "true";
                 }
             }, 1000);
 

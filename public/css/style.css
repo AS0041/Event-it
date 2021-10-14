@@ -211,7 +211,7 @@ body{
   .card-home{
     position:absolute;
     top:500px;
-      animation: scroll 60s linear 1s infinite;
+      animation: scroll 60s linear infinite;
   }
   @keyframes scroll {
     100% { top: -700px; }

@@ -14,13 +14,111 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+        body {
+            background: #dee1e4;
+        }
+
+        .Container {
+            margin: 0px;
+            position: relative;
+            width: 350px;
+            border-radius: 20px;
+            padding: 40px;
+            box-sizing: border-box;
+            background: #ecf0f3;
+            box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+        }
+
+        .brand-title {
+            margin-top: 10px;
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: hsl(171, 100%, 41%);
+            letter-spacing: 1px;
+        }
+
+        .inputs {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        label,
+        input,
+        .butn {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        label {
+            margin-bottom: 4px;
+        }
+
+        label:nth-of-type(2) {
+            margin-top: 12px;
+        }
+
+        input::placeholder {
+            color: gray;
+        }
+
+        input {
+            background: #ecf0f3;
+            padding: 10px;
+            padding-left: 20px;
+            height: 50px;
+            font-size: 14px;
+            border-radius: 50px;
+            box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+        }
+
+        .butn {
+            margin-top: 20px;
+            background: hsl(171, 100%, 41%);
+            height: 40px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 900;
+            box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+            transition: 0.5s;
+        }
+
+        .butnn {
+            height: 40px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+            transition: 0.5s;
+        }
+
+        .butn:hover {
+            box-shadow: none;
+        }
+
+        .butnn:hover {
+            box-shadow: none;
+        }
+
+        h1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
 </head>
 
-<body class="d-flex flex-column bglogin">
+<body>
     <nav class="navbar navbar-expand-lg navbar-dark is-primary py-0">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
-                <p class="has-text-black mt-2">EventIt</p>
+                <p class="has-text-black"><img src="https://pbs.twimg.com/profile_images/1045671258/e.jpg" alt="EventIt"
+                        class="img-thumbnail mb-1" style="height: 40px;background-color: black;"></p>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,36 +139,28 @@
             </div>
         </div>
     </nav>
-    <div class="container py-3">
+    <div class="container py-3 d-flex flex-column align-items-center">
         <%- include("partials/flash") %>
-            <div class="container col-lg-4">
-                <div class="card shadow bgregister">
-                    <div class="card-body shadowForm">
-                        <h5 class="card-title text-white">Register</h5>
-                        <form action="/register" class="needs-validation" method="POST" novalidate>
-                            <label class="form-label" for="Username">
-                                <p class="text-white mb-0 mt-3">Username:</p>
-                            </label>
-                            <input class="form-control" type="text" name="username" id="username" required autofocus>
-                            <label class="form-label" for="email">
-                                <p class="text-white mb-0 mt-3">Email:</p>
-                            </label>
-                            <input class="form-control" type="email" name="email" id="email" required>
-                            <label class="form-label" for="password">
-                                <p class="text-white mb-0 mt-3">Password:</p>
-                            </label>
-                            <input class="form-control" type="password" name="password" id="password" required>
-                            <br><br>
-                            <button class="btn btn-success w-100">Sign Up</button><br>
-                        </form>
-                        <hr style="background-color: white;">
-                        <form action="/google" method="GET">
-                            <button class="btn w-100 btn-light">
-                                <i class="fa fa-google" aria-hidden="true" style="font-size:20px"></i>
-                                Login with Google
-                            </button>
-                        </form>
-                    </div>
+            <div class="Container">
+                <div class="brand-logo"></div>
+                <div class="brand-title">REGISTER</div>
+                <div class="inputs">
+                    <form action="/register" method="POST">
+                        <label for="username">USERNAME</label>
+                        <input type="text" name="username" id="username" required autofocus />
+                        <label for="email">EMAIL</label>
+                        <input type="email" name="email" id="email" required />
+                        <label for="password">PASSWORD</label>
+                        <input type="password" name="password" id="password" required />
+                        <button class="butn" type="submit">SIGN UP</button>
+                    </form>
+                    <hr style="background-color: white;">
+                    <form action="/google" method="GET">
+                        <button class="butnn btn w-100 btn-light">
+                            <i class="fa fa-google" aria-hidden="true" style="font-size:20px"></i>
+                            Login with Google
+                        </button>
+                    </form>
                 </div>
             </div>
     </div>
@@ -91,8 +181,8 @@
                     d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
             </svg><i class="bi bi-linkedin"></i></a>
     </div>
-    <footer class="footer bg-dark p-0 mt-auto" style="height: 60px;">
-        <div class="container">
+    <footer class="footer bg-dark p-0 mt-auto">
+        <div>
             <span class="text-white">
                 <p class="text-center">&copy EventIt</p><br><br>
             </span>
