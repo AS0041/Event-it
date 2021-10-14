@@ -161,7 +161,7 @@ router.post("/create/:id/:memberid", asyncError(async (req, res) => {
             res.redirect(`/events/create/${id.id}`);
         })
         .catch((error) => {
-            req.flash("error", `Error! Could not send mail to the user.`);
+            req.flash(error);
             res.redirect(`/events/create/${id.id}`);
         });
 }));
