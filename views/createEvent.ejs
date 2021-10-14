@@ -62,53 +62,123 @@
         @media screen and (max-width:1200px) {
             .wrapper {
                 width: 1100px;
+                margin-left: 0px;
             }
         }
 
         @media screen and (max-width:1000px) {
             .wrapper {
                 width: 900px;
+                margin-left: 0px;
             }
         }
 
         @media screen and (max-width:850px) {
             .wrapper {
                 width: 800px;
+                margin-left: 0px;
             }
         }
 
         @media screen and (max-width:760px) {
             .wrapper {
                 width: 760px;
+                margin-left: 0px;
             }
         }
 
-        @media screen and (max-width:630px) {
+        @media screen and (max-width:650px) {
             .wrapper {
-                width: 630px;
+                width: 600px;
+                margin-left: 0px;
+            }
+
+            .card {
+                width: 500px;
+                ;
             }
         }
 
-        @media screen and (max-width:570px) {
+        @media screen and (max-width:610px) {
             .wrapper {
-                width: 570px;
+                width: 530px;
+            }
+
+            .card {
+                width: 450px;
+                ;
+            }
+        }
+
+        @media screen and (max-width:550px) {
+            .wrapper {
+                width: 450px;
+                margin-left: 50px;
+            }
+
+            .card {
+                width: 400px;
             }
         }
 
         @media screen and (max-width:480px) {
             .wrapper {
-                width: 500px;
+                width: 400px;
+                margin-left: 30px;
+            }
+
+            .card {
+                width: 390px;
+            }
+        }
+
+        @media screen and (max-width:435px) {
+            .wrapper {
+                width: 400px;
+                margin-left: 10px;
+            }
+        }
+
+        @media screen and (max-width:420px) {
+            .wrapper {
+                width: 390px;
+                margin-left: 10px;
+            }
+
+            .card {
+                width: 390px;
             }
         }
 
         @media screen and (max-width:400px) {
             .wrapper {
-                margin-left: 0px;
-                margin-right: 0px;
+                width: 360px;
+            }
+
+            .card {
+                width: 360px;
             }
         }
 
-        */
+        @media screen and (max-width:370px) {
+            .wrapper {
+                width: 340px;
+            }
+
+            .card {
+                width: 340px;
+            }
+        }
+
+        @media screen and (max-width:350px) {
+            .wrapper {
+                width: 330px;
+            }
+
+            .card {
+                width: 340px;
+            }
+        }
     </style>
 </head>
 
@@ -205,8 +275,8 @@
     <div class="container-fluid p-0"
         style="background-image: url(https://mondaymorning.nitrkl.ac.in/uploads/post/college-fest-1050x591.jpg);">
         <%- include("partials/flash") %>
-            <div class="wrapper">
-                <div id="slide" class="card shadow bg-warning bg-gradient col-8 offset-md-2 offset-1 mt-5 mb-3">
+            <div class="wrapper mb-3">
+                <div id="slide" class="card shadow bg-warning bg-gradient col-8 offset-md-2 offset-sm-1 mt-5 mb-3">
                     <div class="card-body">
                         <h5 class="card-title is-size-3 bg-warning bg-gradient">Event pamphlet</h5>
                         <form action="/events/create" d-inline" enctype="multipart/form-data" method="POST">
