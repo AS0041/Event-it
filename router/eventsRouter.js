@@ -132,7 +132,7 @@ router.post("/create/:id/:memberid", asyncError(async (req, res) => {
     await event.save();
     const oAuth2Client = new google.auth.OAuth2(process.env.CLIENT_ID, process.env.CLIENT_SECRET, "https://developers.google.com/oauthplayground");
     oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
-    async function sendMail(req, res) {
+    async function sendMail() {
         const accessToken = await oAuth2Client.getAccessToken();
         const transport = nodemailer.createTransport({
             service: "gmail",
