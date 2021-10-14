@@ -18,7 +18,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const MongoDBStore = require('connect-mongo');
-const dbUrl = process.env.DB_ATLAS || 'mongodb://localhost:27017/event';// 
+const dbUrl = process.env.DB_ATLAS || 'mongodb://localhost:27017/event';
 const helmet = require("helmet");
 const Ucevent = require("./models/ucevent");
 const { asyncError } = require("./middleware");
@@ -38,7 +38,7 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));//serving the static files
 app.use(express.urlencoded({ extended: true }));
 
-const secret = process.env.SECRET || "mysecret";
+const secret = process.env.SECRET || "thisismysecretforeventwebsite";
 const store = new MongoDBStore({
     mongoUrl: dbUrl,
     secret: secret,
@@ -51,7 +51,7 @@ store.on("error", (e) => {
 const sessionConfig = {
     store: store,
     name: "secretname",
-    secret: "thisismysecretforeventwebsite",
+    secret: secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -63,7 +63,7 @@ const sessionConfig = {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "https://eventit41.herokuapp.com/google/callback",//http://localhost:8000/google/callback
+    callbackURL: "https://eventit41.herokuapp.com/google/callback" || "http://localhost:8000/google/callback",
     passReqToCallback: true
 },
     async function (request, accessToken, refreshToken, profile, done) {
