@@ -43,3 +43,13 @@ function createOneElement() {
     // Finally put it where it is supposed to appear.
     document.getElementById("newelement").appendChild(txtNewInputBox);
 }
+function createAnElement() {
+    // First create a DIV element.
+    var txtNewInputBox = document.createElement('div');
+
+    // Then add the content (a new input box) of the element.
+    txtNewInputBox.innerHTML = "<div class='mb-2 mt-2 p-1'><ul><li><input placeholder='name' type='text' class='form-control mb-3' name='divisions' id='exampleInputEmail1' required><input placeholder='description' type='text' class='form-control mb-3' name='divisions' id='exampleInputEmail1' required></li></ul></div>"
+
+    // Finally put it where it is supposed to appear.
+    document.getElementById("newelement5").appendChild(txtNewInputBox);
+}

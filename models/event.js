@@ -14,7 +14,7 @@ const eventSchema = new mongoose.Schema({
         type: Date
     },
     name: String,
-    createdAt: {
+    createdOn: {
         type: Date
     },
     description: String,

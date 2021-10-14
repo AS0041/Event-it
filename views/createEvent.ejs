@@ -30,155 +30,6 @@
             box-shadow: inset 0 0 5px yellow;
             border-radius: 10px;
         }
-
-        .wrapper {
-            position: relative;
-            overflow: hidden;
-            width: 1300px;
-            height: 600px;
-        }
-
-        #slide {
-            position: absolute;
-            left: -1000px;
-            -webkit-animation: slide 0.1s forwards;
-            -webkit-animation-delay: 2s;
-            animation: slide 0.5s forwards;
-            animation-delay: 0s;
-        }
-
-        @-webkit-keyframes slide {
-            100% {
-                left: 0;
-            }
-        }
-
-        @keyframes slide {
-            100% {
-                left: 0;
-            }
-        }
-
-        @media screen and (max-width:1200px) {
-            .wrapper {
-                width: 1100px;
-                margin-left: 0px;
-            }
-        }
-
-        @media screen and (max-width:1000px) {
-            .wrapper {
-                width: 900px;
-                margin-left: 0px;
-            }
-        }
-
-        @media screen and (max-width:850px) {
-            .wrapper {
-                width: 800px;
-                margin-left: 0px;
-            }
-        }
-
-        @media screen and (max-width:760px) {
-            .wrapper {
-                width: 760px;
-                margin-left: 0px;
-            }
-        }
-
-        @media screen and (max-width:650px) {
-            .wrapper {
-                width: 600px;
-                margin-left: 0px;
-            }
-
-            .card {
-                width: 500px;
-                ;
-            }
-        }
-
-        @media screen and (max-width:610px) {
-            .wrapper {
-                width: 530px;
-            }
-
-            .card {
-                width: 450px;
-                ;
-            }
-        }
-
-        @media screen and (max-width:550px) {
-            .wrapper {
-                width: 450px;
-                margin-left: 50px;
-            }
-
-            .card {
-                width: 400px;
-            }
-        }
-
-        @media screen and (max-width:480px) {
-            .wrapper {
-                width: 400px;
-                margin-left: 30px;
-            }
-
-            .card {
-                width: 390px;
-            }
-        }
-
-        @media screen and (max-width:435px) {
-            .wrapper {
-                width: 400px;
-                margin-left: 10px;
-            }
-        }
-
-        @media screen and (max-width:420px) {
-            .wrapper {
-                width: 390px;
-                margin-left: 10px;
-            }
-
-            .card {
-                width: 390px;
-            }
-        }
-
-        @media screen and (max-width:400px) {
-            .wrapper {
-                width: 360px;
-            }
-
-            .card {
-                width: 360px;
-            }
-        }
-
-        @media screen and (max-width:370px) {
-            .wrapper {
-                width: 340px;
-            }
-
-            .card {
-                width: 340px;
-            }
-        }
-
-        @media screen and (max-width:350px) {
-            .wrapper {
-                width: 330px;
-            }
-
-            .card {
-                width: 340px;
-            }
-        }
     </style>
 </head>
 
@@ -275,70 +126,70 @@
     <div class="container-fluid p-0"
         style="background-image: url(https://mondaymorning.nitrkl.ac.in/uploads/post/college-fest-1050x591.jpg);">
         <%- include("partials/flash") %>
-            <div class="wrapper mb-3">
-                <div id="slide" class="card shadow bg-warning bg-gradient col-8 offset-md-2 offset-sm-1 mt-5 mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title is-size-3 bg-warning bg-gradient">Event pamphlet</h5>
-                        <form action="/events/create" d-inline" enctype="multipart/form-data" method="POST">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control  bg-warning bg-gradient" id="floatingInput"
-                                    name="name"
-                                    style="border-top: none;border-left: none;border-bottom: solid 2px yellow;"
-                                    placeholder="name@example.com" autofocus required>
-                                <label for="floatingInput">Event name</label>
-                            </div>
-                            <div class="form-floating">
-                                <textarea class="form-control bg-warning bg-gradient" id="floatingPassword"
-                                    name="description"
-                                    style="border-top: none;border-left: none;border-bottom: solid 2px yellow;"></textarea>
-                                <label for=" floatingInput">Event description</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="datetime-local" class="form-control  bg-warning bg-gradient"
-                                    id="floatingPassword" name="time"
-                                    style="border-top: none;border-left: none;border-bottom: solid 2px yellow;"
-                                    required>
-                                <label for="floatingInput">Event begins on</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="datetime-local" class="form-control  bg-warning bg-gradient"
-                                    id="floatingPassword" name="timed"
-                                    style="border-top: none;border-left: none;border-bottom: solid 2px yellow;"
-                                    required>
-                                <label for="floatingInput">Event ends on</label>
-                            </div>
-                            <div class="mb-3 mt-5 ml-2">
-                                <label for="formFileMultiple" class="form-label">Fill Events List:</label>
 
-                            </div>
-                            <div class="mb-3 mt-2 ml-2">
-                                <label for="formFileMultiple" class="form-label">Upload picture</label>
-                                <input class="form-control  bg-warning bg-gradient" name="images" type="file"
-                                    id="formFileMultiple" multiple>
-                            </div>
-                            <div>
-                                <label for="floatingInput" class="ml-3">Add link(if any)</label>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-plus-lg ml-5" viewBox="0 0 16 16" onclick="createOneElement()">
-                                    <path
-                                        d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
-                                </svg>
-                                <div id="newelement"></div>
-                            </div>
-                            <button class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                                    fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z" />
-                                </svg></button>
-                        </form>
-                        <a href="/events"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black"
-                                class="bi bi-arrow-left ml-5" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                            </svg></a>
-                    </div>
+            <div class="card shadow bg-warning bg-gradient col-md-8 offset-md-2 mt-5 mb-3">
+                <div class="card-body">
+                    <h5 class="card-title is-size-3 bg-warning bg-gradient">Event pamphlet</h5>
+                    <form action="/events/create" d-inline" enctype="multipart/form-data" method="POST">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control  bg-warning bg-gradient" id="floatingInput"
+                                name="name" style="border-top: none;border-left: none;border-bottom: solid 2px yellow;"
+                                placeholder="name@example.com" autofocus required>
+                            <label for="floatingInput">Event name</label>
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control bg-warning bg-gradient" id="floatingPassword"
+                                name="description"
+                                style="border-top: none;border-left: none;border-bottom: solid 2px yellow;"></textarea>
+                            <label for=" floatingInput">Event description</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="datetime-local" class="form-control  bg-warning bg-gradient"
+                                id="floatingPassword" name="time"
+                                style="border-top: none;border-left: none;border-bottom: solid 2px yellow;" required>
+                            <label for="floatingInput">Event begins on</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="datetime-local" class="form-control  bg-warning bg-gradient"
+                                id="floatingPassword" name="timed"
+                                style="border-top: none;border-left: none;border-bottom: solid 2px yellow;" required>
+                            <label for="floatingInput">Event ends on</label>
+                        </div>
+                        <div class="mb-3 mt-5 ml-2">
+                            <label for="formFileMultiple" class="form-label">Fill Events List : </label>
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal5">
+                                Events List
+                            </button>
+                        </div>
+                        <div class="mb-3 mt-2 ml-2">
+                            <label for="formFileMultiple" class="form-label">Upload picture</label>
+                            <input class="form-control  bg-warning bg-gradient" name="images" type="file"
+                                id="formFileMultiple" multiple>
+                        </div>
+                        <div>
+                            <label for="floatingInput" class="ml-3">Add link(if any)</label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-plus-lg ml-5" viewBox="0 0 16 16" onclick="createOneElement()">
+                                <path
+                                    d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
+                            </svg>
+                            <div id="newelement"></div>
+                        </div>
+                        <button class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z" />
+                            </svg></button>
+                    </form>
+                    <a href="/events"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black"
+                            class="bi bi-arrow-left ml-5" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                        </svg></a>
                 </div>
             </div>
+
     </div>
     <div class="sidediv sidedivbar">
         <a href="https://www.instagram.com/abhishek111201/"><svg xmlns="http://www.w3.org/2000/svg" width="40"
@@ -364,6 +215,31 @@
             </span>
         </div>
     </footer>
+    <!--Modal Body-->
+    <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content ml-0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel5">Fill Events</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label for="floatingInput" class="ml-3">Add Programmes</label>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-plus-lg ml-5" viewBox="0 0 16 16" onclick="createAnElement()">
+                            <path
+                                d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
+                        </svg>
+                        <div id="newelement5"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"

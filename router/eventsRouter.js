@@ -98,7 +98,7 @@ router.post("/create", upload.array("images"), isLoggedIn, asyncError(async (req
     const createdEvent = new Event(event);
     createdEvent.images = req.files.map(x => ({ url: x.path, filename: x.filename }));
     createdEvent.author = req.user._id;
-    createdEvent.createdAt = Date.now();
+    createdEvent.createdOn = Date.now();
     await createdEvent.save();
     req.flash("success", `You created a new event- ${createdEvent.name}`);
     res.redirect("/events/view");
