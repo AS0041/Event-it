@@ -118,7 +118,7 @@
                     <input id="value" type="text" value="<%= event.time %>" class="d-none">
                     <input id="timeValue" type="text" value="<%= event.timed %>" class="d-none">
                     <% } %>
-                        <div class="is-size-2 d-none d-xl-block" style="position: absolute;left: 120px;" id="demo">
+                        <div style="position: absolute;left: 10px;" id="demo">
                         </div>
                         <h3 class="text-black p-0" style="font-family:'Caramel',cursive;font-size: 80px;height:75px;">
                             <%= event.name %>
@@ -405,24 +405,24 @@
                 var value = new Date(document.getElementById("value").value).getTime();
                 var timeValue = new Date(document.getElementById("timeValue").value).getTime();
                 var presentTime = new Date().getTime();
-                var distance = value - presentTime - 19800000;
-                var difference = timeValue - presentTime - 19800000;
+                var distance = value - presentTime;
+                var difference = timeValue - presentTime;
                 var timeout = timeValue - value;
                 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                document.getElementById("demo").innerText = days + "d " + hours + "h "
+                document.getElementById("demo").innerText = "Event begins in :" + days + "d " + hours + "h "
                     + minutes + "m " + seconds + "s ";
                 if (distance < 0 && difference > 0) {
                     clearInterval(x);
-                    document.getElementById("demo").innerHTML = "<h3 class='is-size-2 live'>Event is Live Now!</h3>";
+                    document.getElementById("demo").innerHTML = "<h3 class='is-size-2 d-none d-xl-block live'>Event is Live Now!</h3>";
                     var y = setTimeout(function () {
                         window.location.reload();
                         clearTimeout(y);
                     }, timeout);
                 } else if (distance < 0 && difference < 0) {
-                    document.getElementById("demo").innerHTML = "<h3 class='is-size-2 text-danger'>Event is Closed.</h3>";
+                    document.getElementById("demo").innerHTML = "<h3 class='is-size-5 text-danger'>Event has ended.</h3>";
                     document.getElementById("memberBtn").disabled = "true";
                 }
             }, 1000);
