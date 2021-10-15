@@ -16,7 +16,7 @@ module.exports.asyncError = function (fn) {
 module.exports.isAuthor = async (req, res, next) => {
     const id = req.params;
     const post = await Post.findById(id.id);
-    if (!post.author.equals(req.user._id) && !req.user._id.equals("6156780ff3687e5a21a08d66" || "61479a514ccc3fdaffb8b2b8")) {
+    if (!post.author.equals(req.user._id) && !req.user._id.equals("615899eff1afd3284d02d55f")) {
         req.flash("error", "You do not have permission to do that!");
         return res.redirect(`/events/${id.id}`);
     }
