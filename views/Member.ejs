@@ -17,12 +17,24 @@
                     <label for="email" class="form-label">Email Id:</label>
                     <input type="email" class="form-control" name="email" id="email" required>
                 </div>
-                <div class="mb-3">
-                    <label for="event" class="form-label">Skills: (USE A COMMA TO SEPARATE DIFFERENT SKILLS:
+                <div class="mb-5">
+                    <label for="skills" class="form-label">Skills: (USE A COMMA TO SEPARATE DIFFERENT SKILLS:
                         Eg-designing,writing,etc..)</label>
-                    <input type="text" class="form-control" name="skills" id="event" required>
+                    <input type="text" class="form-control" name="skills" id="skills" required>
                 </div>
-                <div class="mb-3 form-check">
+                <div class="mb-5" style="margin-top: 40px;">
+                    <select class="form-select" name="event" aria-label="Default select example">
+                        <option selected>Join in:</option>
+                        <% event.programmes.forEach((programme,i)=> {%>
+                            <% if(event.programmes[i]) {%>
+                                <option value="<%= programme %> ">
+                                    <%=programme%>
+                                </option>
+                                <% } %>
+                                    <% }); %>
+                    </select>
+                </div>
+                <div class="mb-5 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
                     <label class="form-check-label" for="exampleCheck1">I agree that my inputs are true</label>
                 </div>

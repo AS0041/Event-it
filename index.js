@@ -18,7 +18,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const MongoDBStore = require('connect-mongo');
-const dbUrl = 'mongodb://localhost:27017/event';//process.env.DB_ATLAS || 
+const dbUrl = process.env.DB_ATLAS || 'mongodb://localhost:27017/event';
 const helmet = require("helmet");
 const Ucevent = require("./models/ucevent");
 const { asyncError } = require("./middleware");
@@ -35,7 +35,7 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 app.use(methodOverride("_method"));
-app.use(express.static(path.join(__dirname, "/public")));//serving the static files
+app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: true }));
 
 const secret = process.env.SECRET || "thisismysecretforeventwebsite";

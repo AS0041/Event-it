@@ -156,11 +156,15 @@
                             <label for="floatingInput">Event ends on</label>
                         </div>
                         <div class="mb-3 mt-5 ml-2">
-                            <label for="formFileMultiple" class="form-label">Fill Events List : </label>
-                            <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal5">
-                                Events List
-                            </button>
+                            <div>
+                                <label for="floatingInput">Add Programmes</label>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-plus-lg ml-5" viewBox="0 0 16 16" onclick="createAnElement()">
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
+                                </svg>
+                                <div id="newelement5"></div>
+                            </div>
                         </div>
                         <div class="mb-3 mt-2 ml-2">
                             <label for="formFileMultiple" class="form-label">Upload picture</label>
@@ -215,31 +219,6 @@
             </span>
         </div>
     </footer>
-    <!--Modal Body-->
-    <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content ml-0">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel5">Fill Events</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <label for="floatingInput" class="ml-3">Add Programmes</label>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-plus-lg ml-5" viewBox="0 0 16 16" onclick="createAnElement()">
-                            <path
-                                d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
-                        </svg>
-                        <div id="newelement5"></div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"

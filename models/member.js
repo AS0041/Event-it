@@ -4,7 +4,8 @@ const memberSchema = new mongoose.Schema({
     college: String,
     email: String,
     linkedin: String,
-    skills: Array
+    skills: Array,
+    event: String
 })
 const Member = mongoose.model("Member", memberSchema);
 module.exports = Member;

@@ -48,8 +48,18 @@ function createAnElement() {
     var txtNewInputBox = document.createElement('div');
 
     // Then add the content (a new input box) of the element.
-    txtNewInputBox.innerHTML = "<div class='mb-2 mt-2 p-1'><ul><li><input placeholder='name' type='text' class='form-control mb-3' name='divisions' id='exampleInputEmail1' required><input placeholder='description' type='text' class='form-control mb-3' name='divisions' id='exampleInputEmail1' required></li></ul></div>"
+    txtNewInputBox.innerHTML = "<div class='mb-2 mt-2 p-1'><ul><li><input placeholder='name' type='text' class='form-control mb-3' name='programmes' id='exampleInputEmail1'><input placeholder='description' type='text' class='form-control mb-3' name='details' id='exampleInputEmail1'></li></ul></div>"
 
     // Finally put it where it is supposed to appear.
     document.getElementById("newelement5").appendChild(txtNewInputBox);
+}
+function createTheElement() {
+    // First create a DIV element.
+    var txtNewInputBox = document.createElement('div');
+
+    // Then add the content (a new input box) of the element.
+    txtNewInputBox.innerHTML = "<div class='mb-2 mt-2 p-1'><ul><li><input placeholder='name' type='text' class='form-control mb-3' name='programmes' id='exampleInputEmail1'><input placeholder='description' type='text' class='form-control mb-3' name='details' id='exampleInputEmail1'></li></ul></div>"
+
+    // Finally put it where it is supposed to appear.
+    document.getElementById("newelement3").appendChild(txtNewInputBox);
 }

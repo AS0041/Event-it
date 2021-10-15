@@ -157,7 +157,7 @@ router.post("/create/:id/:memberid", asyncError(async (req, res) => {
     };
     sendMail(req, res)
         .then(() => {
-            req.flash("success", `Accepted ${member.name} as a Member.Email sent to ${member.email}.Please visit your email to check the sent mail.`);
+            req.flash("success", `Accepted ${member.name} as a Member. Email sent to ${member.email}. Please visit your email to check the sent mail.`);
             res.redirect(`/events/create/${id.id}`);
         })
         .catch(() => {

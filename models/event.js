@@ -40,6 +40,12 @@ const eventSchema = new mongoose.Schema({
     userclick: {
         type: Array
     },
+    programmes: {
+        type: Array
+    },
+    details: {
+        type: Array
+    }
 })
 eventSchema.post("findOneAndDelete", async (doc) => {
     if (doc) {
