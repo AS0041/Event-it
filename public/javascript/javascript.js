@@ -34,32 +34,17 @@ function copyid() {
     navigator.clipboard.writeText(copyText.value);
 }
 function createOneElement() {
-    // First create a DIV element.
     var txtNewInputBox = document.createElement('div');
-
-    // Then add the content (a new input box) of the element.
     txtNewInputBox.innerHTML = "<div class='mb-2 mt-2'><input type='url' class='form-control bg-gradient bg-warning' name='links' id='exampleInputEmail1'></div>"
-
-    // Finally put it where it is supposed to appear.
     document.getElementById("newelement").appendChild(txtNewInputBox);
 }
 function createAnElement() {
-    // First create a DIV element.
     var txtNewInputBox = document.createElement('div');
-
-    // Then add the content (a new input box) of the element.
     txtNewInputBox.innerHTML = "<div class='mb-2 mt-2 p-1'><ul><li><input placeholder='name' type='text' class='form-control mb-3' name='programmes' id='exampleInputEmail1'><input placeholder='description' type='text' class='form-control mb-3' name='details' id='exampleInputEmail1'></li></ul></div>"
-
-    // Finally put it where it is supposed to appear.
     document.getElementById("newelement5").appendChild(txtNewInputBox);
 }
 function createTheElement() {
-    // First create a DIV element.
     var txtNewInputBox = document.createElement('div');
-
-    // Then add the content (a new input box) of the element.
     txtNewInputBox.innerHTML = "<div class='mb-2 mt-2 p-1'><ul><li><input placeholder='name' type='text' class='form-control mb-3' name='programmes' id='exampleInputEmail1'><input placeholder='description' type='text' class='form-control mb-3' name='details' id='exampleInputEmail1'></li></ul></div>"
-
-    // Finally put it where it is supposed to appear.
     document.getElementById("newelement3").appendChild(txtNewInputBox);
 }
