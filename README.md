@@ -13,9 +13,11 @@ The application is up and running with features like local and google authentica
 * Authentication
 <img src="public/images/Screenshot (68).png">
 <img src="public/images/Screenshot (69).png">
+
 * CRUD
 * Like/Dislike/Comment
 * Profile details
+
 ## Tech Stack
 - [x] Html
 - [x] css
