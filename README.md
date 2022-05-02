@@ -7,4 +7,4 @@ The application is up and running with features like local and google authentica
 
 ## Features
 Interactive UI
-! [] ()
+! [Landing page]()
