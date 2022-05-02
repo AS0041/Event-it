@@ -9,8 +9,7 @@ The application is up and running with features like local and google authentica
 - [x] Interactive UI
 <img src="public/images/Screenshot (67).png">
 - [x] Authentication with google and locally
-
 <img src="public/images/Screenshot (68).png">
-<br>
+<br><br>
 <img src="public/images/Screenshot (69).png">
 
