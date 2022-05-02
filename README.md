@@ -6,10 +6,10 @@ This application provides user-interactive interface for posting and sharing stu
 The application is up and running with features like local and google authentication, upload, storage. The app uses mongo atlas to store the user details with full security guarantee.If a working email is provided at the time of signing up to the application, the user will also get a conformation email upon being selected to an event as a member. If the access token expires then sometimes the auto email facility does not work but the user will be informed about the status in all cases.
 
 ## Features
--[x] Interactive UI
+- [x] Interactive UI
 <img src="public/images/Screenshot (67).png">
 <br><br>
--[x] Authentication with google and locally
+- [x] Authentication with google and locally
 <img src="public/images/Screenshot (68).png">
 <br>
 <img src="public/images/Screenshot (69).png">
