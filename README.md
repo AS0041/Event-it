@@ -16,7 +16,7 @@ The application is up and running with features like local and google authentica
 * CRUD
 * Like/Dislike/Comment
 * Profile details
-##Tech Stack
+## Tech Stack
 - [x] Html
 - [x] css
 - [x] bootstrap and bulma for interactive UI
