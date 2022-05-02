@@ -8,11 +8,19 @@ The application is up and running with features like local and google authentica
 ## Features
 * Interactive UI
 <img src="public/images/Screenshot (67).png">
-
-*Authentication
-..<img src="public/images/Screenshot (68).png">
+<img src="public/images/Screenshot (70).png">
+<img src="public/images/Screenshot (94).png">
+* Authentication
+<img src="public/images/Screenshot (68).png">
 <img src="public/images/Screenshot (69).png">
+* CRUD
+* Like/Dislike/Comment
+* Profile details
+##Tech Stack
+- [x] Html
+- [x] css
+- [x] bootstrap and bulma for interactive UI
+- [x] js for frontend and backend
+- [x] express for backend
+- [x] mongoose for writing database code for mongodb
 
-* d
-* f
-* h
