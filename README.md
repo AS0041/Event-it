@@ -8,7 +8,7 @@ The application is up and running with features like local and google authentica
 ## Features
 - [x] Interactive UI
 <img src="public/images/Screenshot (67).png">
-<br><br>
+
 - [x] Authentication with google and locally
 <img src="public/images/Screenshot (68).png">
 <br>
