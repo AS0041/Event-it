@@ -10,6 +10,7 @@ The application is up and running with features like local and google authentica
 <img src="public/images/Screenshot (67).png">
 <img src="public/images/Screenshot (70).png">
 <img src="public/images/Screenshot (94).png">
+
 * Authentication
 <img src="public/images/Screenshot (68).png">
 <img src="public/images/Screenshot (69).png">
