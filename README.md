@@ -8,4 +8,4 @@ The application is up and running with features like local and google authentica
 ## Features
 Interactive UI
 
-![Image](https://image.ibb.co/g0SdPw/Screenshot_from_2018_01_05_11_14_40.png)
+<img src="https://image.ibb.co/g0SdPw/Screenshot_from_2018_01_05_11_14_40.png">
