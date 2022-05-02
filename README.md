@@ -8,4 +8,4 @@ The application is up and running with features like local and google authentica
 ## Features
 Interactive UI
 
-<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fnature%2F&psig=AOvVaw1CkH6YZL5p0mQlnmUqT3m9&ust=1651605968408000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCIip4erFwfcCFQAAAAAdAAAAABAD">
+<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fnature%2F&psig=AOvVaw1CkH6YZL5p0mQlnmUqT3m9&ust=1651605968408000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCIip4erFwfcCFQAAAAAdAAAAABAD" alt="landing">
